@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "valid_solids": 30,
+  "part_collisions": 0,
+  "overlap_pairs": 15,
+  "envelope_mm": [
+    288,
+    288,
+    38
+  ],
+  "compact_car_tray_mm": [
+    110.8,
+    64.8,
+    30.2
+  ],
+  "compact_volume_cm3": 216.83116799999996,
+  "volume_reduction_percent": 68.04904132610191,
+  "card_proxies_fit": 13,
+  "car_proxies_fit": 8,
+  "lying_gear_cylinders_fit": 8,
+  "scoreboard_maximum_proxy_mm": [
+    100,
+    60,
+    10
+  ],
+  "measured_scoreboard_bundle_mm": [
+    100,
+    60,
+    7
+  ],
+  "gear_top_clearance_mm": 1,
+  "scoreboard_top_clearance_at10mm": 0.6,
+  "upper_tray_lift_checked": true,
+  "stl_closed": true,
+  "step_valid": true,
+  "fcstd_reopened": true,
+  "parameters_recomputed": true,
+  "physical_fit": "unverified",
+  "gear_profile_assumption": "Entire gear within measured baseD15 cylinder",
+  "output_directory": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_045348_055859"
+}

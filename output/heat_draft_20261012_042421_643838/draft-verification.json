@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "valid_solids": 30,
+  "envelope_mm": [
+    288,
+    288,
+    38
+  ],
+  "part_collisions": 0,
+  "overlap_pairs": 15,
+  "measured_card_proxies_fit": 13,
+  "measured_car_proxies_fit": 8,
+  "nominal_gear_cylinders_fit": 8,
+  "gear_top_clearance_mm": 1.2,
+  "gear_socket_floor_thickness_mm": 1.2,
+  "lower_drawer_usable_height_mm": 5,
+  "drawer_motion_checked": true,
+  "drawer_back_and_top_clearance_mm": 0.4,
+  "stl_closed": true,
+  "step_valid": true,
+  "fcstd_reopened": true,
+  "parameter_recomputed": true,
+  "physical_fit": "unverified",
+  "gear_assumption": "baseD15 measured; whole piece assumed within D15 cylinder",
+  "output_directory": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_042421_643838"
+}

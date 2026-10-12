@@ -1,0 +1,27 @@
+{
+  "purpose": "Macro demonstration; not fitted to Heat",
+  "units": "mm",
+  "parameters": {
+    "length": 120.0,
+    "width": 90.0,
+    "height": 30.0,
+    "wall": 2.0,
+    "base": 2.0,
+    "compartments": 3
+  },
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "outputs": [
+    "HeatOrganizerDemo.FCStd",
+    "HeatOrganizerDemo.step",
+    "HeatOrganizerDemo.stl"
+  ]
+}

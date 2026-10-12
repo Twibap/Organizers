@@ -1,0 +1,4 @@
+{
+  "opened": false,
+  "error": "Traceback (most recent call last):\n  File \"C:/Users/Twibap/Workspace/Organizers/OpenHeatDraft.FCMacro\", line 47, in <module>\n    doc.saveAs(str(view_path))\nOSError: Failed to write all data to file Permission denied\n"
+}

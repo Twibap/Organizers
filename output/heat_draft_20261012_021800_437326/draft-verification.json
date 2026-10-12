@@ -1,0 +1,70 @@
+{
+  "passed": true,
+  "geometry": {
+    "valid_solids": 36,
+    "organizer_envelope_mm": [
+      288.0,
+      288.0,
+      38.0
+    ],
+    "overlapping_bounds_pairs_checked": 14,
+    "part_collisions": 0,
+    "sample_cards_fit": true
+  },
+  "stl": [
+    {
+      "file": "stl/P01Lower_x8.stl",
+      "closed": true,
+      "facets": 116
+    },
+    {
+      "file": "stl/P01Upper_x8.stl",
+      "closed": true,
+      "facets": 116
+    },
+    {
+      "file": "stl/P01Lid_x8.stl",
+      "closed": true,
+      "facets": 44
+    },
+    {
+      "file": "stl/C01Body_x4.stl",
+      "closed": true,
+      "facets": 116
+    },
+    {
+      "file": "stl/C01Lid_x4.stl",
+      "closed": true,
+      "facets": 44
+    },
+    {
+      "file": "stl/Rail01_x1.stl",
+      "closed": true,
+      "facets": 148
+    },
+    {
+      "file": "stl/Rail01Lid_x1.stl",
+      "closed": true,
+      "facets": 108
+    },
+    {
+      "file": "stl/Rail02_x1.stl",
+      "closed": true,
+      "facets": 132
+    },
+    {
+      "file": "stl/Rail02Lid_x1.stl",
+      "closed": true,
+      "facets": 76
+    }
+  ],
+  "step": {
+    "valid": true,
+    "solids": 36
+  },
+  "fcstd": {
+    "reopened": true,
+    "sleeve_parameter_recomputed": true
+  },
+  "output_directory": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_021800_437326"
+}

@@ -1,0 +1,99 @@
+# -*- coding: utf-8 -*-
+"""Open the existing Heat draft in FreeCAD; never save the CAD automatically."""
+from pathlib import Path
+import json
+import traceback
+import FreeCAD as App
+import FreeCADGui as Gui
+
+root = Path(r'C:\Users\Twibap\Workspace\Organizers')
+report_path = None
+report = {'opened': False}
+
+def record_status(data):
+    # Status logging must not prevent the model from opening.
+    if report_path is not None:
+        try:
+            report_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
+        except OSError as error:
+            App.Console.PrintWarning('Heat status log could not be written: ' + str(error) + '\n')
+
+try:
+    marker = root / 'output' / 'latest-heat-draft.txt'
+    output = Path(marker.read_text(encoding='utf-8-sig').strip())
+    if not output.is_absolute():
+        output = root / output
+    source_path = output / 'HeatOrganizerDraft.FCStd'
+    if not source_path.is_file():
+        raise FileNotFoundError('Heat draft CAD file not found: ' + str(source_path))
+    report_path = output / 'freecad-open-status.json'
+    manifest = json.loads((output / 'manifest.json').read_text(encoding='utf-8-sig'))
+    # Reuse an already-open copy without closing any user's documents.
+    matching_paths = {str(source_path.resolve()).casefold(), str((output / 'HeatOrganizerDraft-view.FCStd').resolve()).casefold()}
+    doc = None
+    for candidate in App.listDocuments().values():
+        if candidate.FileName and str(Path(candidate.FileName).resolve()).casefold() in matching_paths and candidate.getObject('OrganizerParts'):
+            doc = candidate
+            break
+    if doc is None:
+        doc = App.openDocument(str(source_path))
+    App.setActiveDocument(doc.Name)
+    doc.recompute()
+    parts = doc.OrganizerParts.Group
+    final_names = {obj.Name for obj in parts}
+    sample_names = {o.Name for o in doc.Objects if o.Name.startswith(('CarSampleP','GearSampleP','ScoreboardSample'))}
+    component_group = doc.getObject('ComponentSamples')
+    if sample_names:
+        if component_group is None:
+            component_group=doc.addObject('App::DocumentObjectGroup','ComponentSamples')
+        component_group.Label='Measured car / nominal gear envelopes - not printable'
+        for name in sample_names:
+            obj=doc.getObject(name)
+            if obj in doc.References.Group: doc.References.removeObject(obj)
+            component_group.addObject(obj)
+        component_group.ViewObject.Visibility=True
+    sample_colors=[(0.78,0.22,0.18),(0.16,0.43,0.70),(0.91,0.66,0.15),(0.18,0.58,0.43),
+                   (0.30,0.33,0.37),(0.72,0.70,0.65),(0.90,0.40,0.16),(0.52,0.32,0.65)]
+    palette = {}
+    for module in manifest['layout']:
+        for suffix in ('Lower', 'Upper', 'Body', 'Lid', ''):
+            palette[module['name'] + suffix] = tuple(module['color'])
+    palette['CarScoreTray']=(0.46,0.51,0.56)
+    palette['WeatherLower'] = palette.get('Tokens', (0.72,0.50,0.22))
+    palette['PressUpper'] = palette.get('Tokens', (0.72,0.50,0.22))
+    doc.Construction.ViewObject.Visibility = False
+    doc.References.ViewObject.Visibility = False
+    doc.OrganizerParts.ViewObject.Visibility = True
+    for obj in doc.Objects:
+        if obj.ViewObject is None or obj.TypeId == 'App::DocumentObjectGroup':
+            continue
+        obj.ViewObject.Visibility = (obj.Name in final_names and not obj.Name.endswith('Lid')) or obj.Name in sample_names
+        if obj.Name in sample_names:
+            obj.ViewObject.ShapeColor=(0.65,0.64,0.55) if obj.Name=='ScoreboardSample' else sample_colors[int(obj.Name[-2:])-1]
+            obj.ViewObject.Transparency=55 if obj.Name.startswith('Gear') else 25
+            obj.ViewObject.LineColor=(0.15,0.17,0.20)
+        if obj.Name in final_names:
+            obj.ViewObject.ShapeColor = palette.get(obj.Name, (0.35, 0.52, 0.60))
+            obj.ViewObject.LineColor = (0.12, 0.15, 0.18)
+            obj.ViewObject.DisplayMode = 'Flat Lines'
+    Gui.activateWorkbench('PartWorkbench')
+    view = Gui.activeDocument().activeView()
+    view.viewAxonometric()
+    view.fitAll()
+    Gui.Selection.clearSelection()
+    window = Gui.getMainWindow()
+    window.show()
+    window.raise_()
+    window.activateWindow()
+    report = {'opened': True, 'document': doc.Name, 'title': window.windowTitle(),
+              'source_file': str(source_path), 'automatic_cad_save': False,
+              'visible_parts': sum(obj.ViewObject.Visibility for obj in parts),
+              'hidden_lids': sum(not obj.ViewObject.Visibility for obj in parts if obj.Name.endswith('Lid')),
+              'valid_parts': sum(obj.Shape.isValid() for obj in parts),
+              'visible_component_reference_envelopes':len(sample_names)}
+    record_status(report)
+    App.Console.PrintMessage('Heat draft opened successfully. CAD automatic saving is disabled.\n')
+except Exception:
+    report = {'opened': False, 'error': traceback.format_exc()}
+    record_status(report)
+    App.Console.PrintError(traceback.format_exc())

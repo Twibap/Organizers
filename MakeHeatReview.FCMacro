@@ -1,0 +1,42 @@
+# -*- coding: utf-8 -*-
+"""Build a directly viewable CAD review copy with native view providers."""
+from pathlib import Path
+import json, runpy, traceback
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore
+
+root = Path(r'C:\Users\Twibap\Workspace\Organizers')
+output = Path((root/'output/latest-heat-draft.txt').read_text(encoding='utf-8-sig').strip())
+review = output/'HeatOrganizerReview.FCStd'
+status_path = output/'review-visibility-status.json'
+
+def save_review():
+    report = {'saved': False}
+    try:
+        scope = runpy.run_path(str(root/'OpenHeatDraft.FCMacro'))
+        doc = scope.get('doc')
+        if doc is None or not scope.get('report',{}).get('opened'):
+            raise RuntimeError('Draft opening failed: ' + str(scope.get('report')))
+        view = Gui.activeDocument().activeView()
+        view.viewAxonometric()
+        view.fitAll()
+        doc.recompute()
+        doc.saveAs(str(review))
+        visible = [o.Name for o in doc.OrganizerParts.Group if o.ViewObject.Visibility]
+        report.update(saved=True, review_file=str(review), visible_parts=visible,
+                      valid_solids=sum(o.Shape.isValid() for o in doc.OrganizerParts.Group))
+        status_path.write_text(json.dumps(report,indent=2),encoding='utf-8')
+        try:
+            view.saveImage(str(output/'HeatOrganizerReview-native.png'),1400,1100,'White')
+            report['native_render_saved']=True
+        except Exception:
+            report['render_error']=traceback.format_exc()
+        status_path.write_text(json.dumps(report,indent=2),encoding='utf-8')
+        App.Console.PrintMessage('Direct review CAD saved: '+str(review)+'\n')
+    except Exception:
+        report['error']=traceback.format_exc()
+        status_path.write_text(json.dumps(report,indent=2),encoding='utf-8')
+        App.Console.PrintError(report['error'])
+
+QtCore.QTimer.singleShot(1500,save_review)

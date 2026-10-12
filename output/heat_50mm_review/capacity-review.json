@@ -1,0 +1,979 @@
+{
+  "date": "2026-10-12",
+  "scope": "Base + any two distinct currently listed official expansions; maps, rulebooks and player mats excluded; common mats and scorepads included.",
+  "source_fcstd": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_045348_055859\\HeatOrganizerDraft.FCStd",
+  "status": "conditional_feasibility_review_not_full_component_fit_validation",
+  "assumed_sleeved_card_mm": [
+    58,
+    89
+  ],
+  "measured_sample": {
+    "cards": 24,
+    "height_mm": 9
+  },
+  "pitch_estimate_mm": 0.375,
+  "assumed_stack_removal_clearance_mm": 1,
+  "organizer_body_envelope_mm": [
+    288,
+    288,
+    44
+  ],
+  "source_card_layer_height_mm": 38,
+  "proposed_total_height_mm": 49,
+  "paper_layer_condition": {
+    "maximum_combined_thickness_mm": 4,
+    "contents": [
+      "Legends mat",
+      "Championship mat"
+    ],
+    "top_headroom_mm": 1,
+    "formula": "44 + common mats <= 4 + 1 headroom <= 49 < 50",
+    "common_mats_combined_upper_bound_mm": 4,
+    "common_mats_upper_bound_basis": "They are a subset of the user-measured 4 mm base mats/rules stack.",
+    "scorepads_storage": "v0.5 CarScoreTray; user-measured whole bundle100x60x7mm; design capacity10mm",
+    "xy_condition": "Paper pieces must lie flat inside the actual box above the organizer lids.",
+    "physical_measurements_available": false
+  },
+  "unverified_components": [
+    "common mats: individual footprint and combined thickness",
+    "whether measured whole scoreboard bundle covers all scorepads of the selected expansions",
+    "press standees and their bases",
+    "entire gear upper outline beyond measured base diameter",
+    "new expansion card sleeve exterior and actual large-deck thickness"
+  ],
+  "original_fcstd_modified": false,
+  "measurement_and_allocation_files_updated": true,
+  "cases": [
+    {
+      "expansions": [
+        "Heavy Rain",
+        "Tunnel Vision"
+      ],
+      "total_cards": 445,
+      "player_sets": 8,
+      "reserve_heat": 24,
+      "reserve_stress": 24,
+      "garage_cards": 120,
+      "sponsorship_cards": 49,
+      "common_cards_in_other": 36,
+      "powerup_cards_in_reserve": 0,
+      "unused_player_bins": [],
+      "cars": 8,
+      "gears": 8,
+      "scorepads": 3,
+      "bins": [
+        {
+          "body": "P01Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P02Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P03Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P04Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P05Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P06Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P07Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P08Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "ReserveBody",
+          "contents": "reserve Heat/Stress",
+          "cards": 48,
+          "estimated_stack_height_mm": 18.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 14.6
+        },
+        {
+          "body": "SponsorBody",
+          "contents": "sponsorship",
+          "cards": 49,
+          "estimated_stack_height_mm": 18.375,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 14.225
+        },
+        {
+          "body": "OtherBody",
+          "contents": "Legends/Event/Track/Rival",
+          "cards": 36,
+          "estimated_stack_height_mm": 13.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 19.1
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage first stack",
+          "cards": 60,
+          "estimated_stack_height_mm": 22.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 10.1
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage second stack",
+          "cards": 60,
+          "estimated_stack_height_mm": 22.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 10.1
+        }
+      ],
+      "card_and_car_and_nominal_gear_proxy_collisions": 0,
+      "measured_token_bundle_collisions": 0,
+      "weather_tokens": 6,
+      "road_condition_tokens": 12,
+      "nominal_card_car_gear_geometry_passed": true,
+      "all_components_physically_verified": false
+    },
+    {
+      "expansions": [
+        "Heavy Rain",
+        "Rocky Roads"
+      ],
+      "total_cards": 450,
+      "player_sets": 8,
+      "reserve_heat": 30,
+      "reserve_stress": 23,
+      "garage_cards": 120,
+      "sponsorship_cards": 49,
+      "common_cards_in_other": 36,
+      "powerup_cards_in_reserve": 0,
+      "unused_player_bins": [],
+      "cars": 8,
+      "gears": 8,
+      "scorepads": 3,
+      "bins": [
+        {
+          "body": "P01Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P02Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P03Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P04Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P05Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P06Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P07Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P08Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "ReserveBody",
+          "contents": "reserve Heat/Stress",
+          "cards": 53,
+          "estimated_stack_height_mm": 19.875,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.725
+        },
+        {
+          "body": "SponsorBody",
+          "contents": "sponsorship",
+          "cards": 49,
+          "estimated_stack_height_mm": 18.375,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 14.225
+        },
+        {
+          "body": "OtherBody",
+          "contents": "Legends/Event/Track/Rival",
+          "cards": 36,
+          "estimated_stack_height_mm": 13.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 19.1
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage first stack",
+          "cards": 60,
+          "estimated_stack_height_mm": 22.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 10.1
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage second stack",
+          "cards": 60,
+          "estimated_stack_height_mm": 22.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 10.1
+        }
+      ],
+      "card_and_car_and_nominal_gear_proxy_collisions": 0,
+      "measured_token_bundle_collisions": 0,
+      "weather_tokens": 6,
+      "road_condition_tokens": 12,
+      "nominal_card_car_gear_geometry_passed": true,
+      "all_components_physically_verified": false
+    },
+    {
+      "expansions": [
+        "Heavy Rain",
+        "Legends"
+      ],
+      "total_cards": 495,
+      "player_sets": 7,
+      "reserve_heat": 21,
+      "reserve_stress": 21,
+      "garage_cards": 108,
+      "sponsorship_cards": 63,
+      "common_cards_in_other": 78,
+      "powerup_cards_in_reserve": 36,
+      "unused_player_bins": [
+        "P08Body"
+      ],
+      "cars": 7,
+      "gears": 7,
+      "scorepads": 2,
+      "bins": [
+        {
+          "body": "P01Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P02Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P03Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P04Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P05Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P06Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P07Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "ReserveBody",
+          "contents": "reserve Heat/Stress + Legends Power Up",
+          "cards": 78,
+          "estimated_stack_height_mm": 29.25,
+          "assumed_separator_thickness_mm": 1,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 2.35
+        },
+        {
+          "body": "SponsorBody",
+          "contents": "sponsorship",
+          "cards": 63,
+          "estimated_stack_height_mm": 23.625,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 8.975
+        },
+        {
+          "body": "OtherBody",
+          "contents": "Legends/Event/Track/Rival",
+          "cards": 78,
+          "estimated_stack_height_mm": 29.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 3.35
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage first stack",
+          "cards": 54,
+          "estimated_stack_height_mm": 20.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.35
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage second stack",
+          "cards": 54,
+          "estimated_stack_height_mm": 20.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.35
+        }
+      ],
+      "card_and_car_and_nominal_gear_proxy_collisions": 0,
+      "measured_token_bundle_collisions": 0,
+      "weather_tokens": 6,
+      "road_condition_tokens": 12,
+      "nominal_card_car_gear_geometry_passed": true,
+      "all_components_physically_verified": false
+    },
+    {
+      "expansions": [
+        "Tunnel Vision",
+        "Rocky Roads"
+      ],
+      "total_cards": 445,
+      "player_sets": 8,
+      "reserve_heat": 24,
+      "reserve_stress": 24,
+      "garage_cards": 120,
+      "sponsorship_cards": 49,
+      "common_cards_in_other": 36,
+      "powerup_cards_in_reserve": 0,
+      "unused_player_bins": [],
+      "cars": 8,
+      "gears": 8,
+      "scorepads": 3,
+      "bins": [
+        {
+          "body": "P01Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P02Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P03Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P04Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P05Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P06Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P07Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P08Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "ReserveBody",
+          "contents": "reserve Heat/Stress",
+          "cards": 48,
+          "estimated_stack_height_mm": 18.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 14.6
+        },
+        {
+          "body": "SponsorBody",
+          "contents": "sponsorship",
+          "cards": 49,
+          "estimated_stack_height_mm": 18.375,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 14.225
+        },
+        {
+          "body": "OtherBody",
+          "contents": "Legends/Event/Track/Rival",
+          "cards": 36,
+          "estimated_stack_height_mm": 13.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 19.1
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage first stack",
+          "cards": 60,
+          "estimated_stack_height_mm": 22.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 10.1
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage second stack",
+          "cards": 60,
+          "estimated_stack_height_mm": 22.5,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 10.1
+        }
+      ],
+      "card_and_car_and_nominal_gear_proxy_collisions": 0,
+      "measured_token_bundle_collisions": 0,
+      "weather_tokens": 6,
+      "road_condition_tokens": 12,
+      "nominal_card_car_gear_geometry_passed": true,
+      "all_components_physically_verified": false
+    },
+    {
+      "expansions": [
+        "Tunnel Vision",
+        "Legends"
+      ],
+      "total_cards": 490,
+      "player_sets": 7,
+      "reserve_heat": 15,
+      "reserve_stress": 22,
+      "garage_cards": 108,
+      "sponsorship_cards": 63,
+      "common_cards_in_other": 78,
+      "powerup_cards_in_reserve": 36,
+      "unused_player_bins": [
+        "P08Body"
+      ],
+      "cars": 7,
+      "gears": 7,
+      "scorepads": 2,
+      "bins": [
+        {
+          "body": "P01Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P02Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P03Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P04Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P05Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P06Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P07Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "ReserveBody",
+          "contents": "reserve Heat/Stress + Legends Power Up",
+          "cards": 73,
+          "estimated_stack_height_mm": 27.375,
+          "assumed_separator_thickness_mm": 1,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 4.225
+        },
+        {
+          "body": "SponsorBody",
+          "contents": "sponsorship",
+          "cards": 63,
+          "estimated_stack_height_mm": 23.625,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 8.975
+        },
+        {
+          "body": "OtherBody",
+          "contents": "Legends/Event/Track/Rival",
+          "cards": 78,
+          "estimated_stack_height_mm": 29.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 3.35
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage first stack",
+          "cards": 54,
+          "estimated_stack_height_mm": 20.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.35
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage second stack",
+          "cards": 54,
+          "estimated_stack_height_mm": 20.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.35
+        }
+      ],
+      "card_and_car_and_nominal_gear_proxy_collisions": 0,
+      "measured_token_bundle_collisions": 0,
+      "weather_tokens": 6,
+      "road_condition_tokens": 12,
+      "nominal_card_car_gear_geometry_passed": true,
+      "all_components_physically_verified": false
+    },
+    {
+      "expansions": [
+        "Rocky Roads",
+        "Legends"
+      ],
+      "total_cards": 495,
+      "player_sets": 7,
+      "reserve_heat": 21,
+      "reserve_stress": 21,
+      "garage_cards": 108,
+      "sponsorship_cards": 63,
+      "common_cards_in_other": 78,
+      "powerup_cards_in_reserve": 36,
+      "unused_player_bins": [
+        "P08Body"
+      ],
+      "cars": 7,
+      "gears": 7,
+      "scorepads": 2,
+      "bins": [
+        {
+          "body": "P01Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P02Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P03Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P04Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P05Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P06Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "P07Body",
+          "contents": "player ready set",
+          "cards": 24,
+          "estimated_stack_height_mm": 9.0,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 14.6,
+          "remaining_after_1mm_clearance_mm": 4.6
+        },
+        {
+          "body": "ReserveBody",
+          "contents": "reserve Heat/Stress + Legends Power Up",
+          "cards": 78,
+          "estimated_stack_height_mm": 29.25,
+          "assumed_separator_thickness_mm": 1,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 2.35
+        },
+        {
+          "body": "SponsorBody",
+          "contents": "sponsorship",
+          "cards": 63,
+          "estimated_stack_height_mm": 23.625,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 8.975
+        },
+        {
+          "body": "OtherBody",
+          "contents": "Legends/Event/Track/Rival",
+          "cards": 78,
+          "estimated_stack_height_mm": 29.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 3.35
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage first stack",
+          "cards": 54,
+          "estimated_stack_height_mm": 20.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.35
+        },
+        {
+          "body": "GarageBody",
+          "contents": "garage second stack",
+          "cards": 54,
+          "estimated_stack_height_mm": 20.25,
+          "assumed_separator_thickness_mm": 0,
+          "available_depth_under_lip_mm": 33.6,
+          "remaining_after_1mm_clearance_mm": 12.35
+        }
+      ],
+      "card_and_car_and_nominal_gear_proxy_collisions": 0,
+      "measured_token_bundle_collisions": 0,
+      "weather_tokens": 6,
+      "road_condition_tokens": 12,
+      "nominal_card_car_gear_geometry_passed": true,
+      "all_components_physically_verified": false
+    }
+  ],
+  "token_fit": {
+    "current_weather_lower_compartment_mm": [
+      89.6,
+      45.2,
+      11
+    ],
+    "measured_bundles_fit_original_weather_lower": false,
+    "candidate_bins": [
+      {
+        "name": "WeatherFit",
+        "count": 6,
+        "measured_bundle_mm": [
+          79,
+          60,
+          12
+        ],
+        "outer_module_mm": [
+          85.0,
+          66.0,
+          16.0
+        ],
+        "position_mm": [
+          195.4,
+          112.6,
+          0.0
+        ],
+        "usable_under_lip_mm": [
+          81.0,
+          62.0,
+          13.0
+        ],
+        "vertical_removal_headroom_mm": 1.0
+      },
+      {
+        "name": "RoadFit",
+        "count": 12,
+        "measured_bundle_mm": [
+          28,
+          28,
+          24
+        ],
+        "outer_module_mm": [
+          85.0,
+          66.0,
+          28.0
+        ],
+        "position_mm": [
+          195.4,
+          112.6,
+          16.0
+        ],
+        "usable_under_lip_mm": [
+          81.0,
+          62.0,
+          25.0
+        ],
+        "vertical_removal_headroom_mm": 1.0
+      }
+    ],
+    "candidate_parts_collisions": 0,
+    "added_weather_and_road_tokens_by_expansion": {
+      "Heavy Rain": {
+        "weather": 0,
+        "road_conditions": 0
+      },
+      "Tunnel Vision": {
+        "weather": 0,
+        "road_conditions": 0
+      },
+      "Rocky Roads": {
+        "weather": 0,
+        "road_conditions": 0
+      },
+      "Legends": {
+        "weather": 0,
+        "road_conditions": 0
+      }
+    },
+    "two_expansion_total_weather": 6,
+    "two_expansion_total_road_conditions": 12,
+    "original_press_module_retained": true,
+    "footprint_of_added_token_stack_mm": [
+      85,
+      66
+    ],
+    "total_stack_height_mm": 44,
+    "measured_bundle_geometry_passed": true
+  },
+  "scoreboard_maximum10mm_geometry_passed": true,
+  "nominal_card_car_gear_geometry_passed_all_cases": true,
+  "all_components_fit_verified": false,
+  "candidate_fcstd": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_50mm_review\\HeatTokenFitCandidate.FCStd",
+  "candidate_stl_closed": true,
+  "candidate_total_parts": 34
+}

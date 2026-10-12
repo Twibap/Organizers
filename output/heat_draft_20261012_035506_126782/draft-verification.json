@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "valid_solids": 29,
+  "envelope_mm": [
+    288,
+    288,
+    38
+  ],
+  "part_collisions": 0,
+  "overlap_pairs": 14,
+  "measured_card_proxies_fit": 13,
+  "stl_closed": true,
+  "step_valid": true,
+  "fcstd_reopened": true,
+  "parameter_recomputed": true,
+  "car_gear_tokens_physical_fit": "unverified",
+  "output_directory": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_035506_126782"
+}

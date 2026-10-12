@@ -1,0 +1,31 @@
+{
+  "saved": true,
+  "visible_parts": [
+    "P01Body",
+    "P02Body",
+    "P03Body",
+    "P04Body",
+    "P05Body",
+    "P06Body",
+    "P07Body",
+    "P08Body",
+    "ReserveBody",
+    "SponsorBody",
+    "OtherBody",
+    "GarageBody",
+    "WeatherLower",
+    "PressUpper",
+    "CarScoreTray",
+    "CarGearBody"
+  ],
+  "valid_parts": 30,
+  "visible_component_envelopes": 17,
+  "compact_saved": true,
+  "exploded_saved": true,
+  "detail_valid_parts": 3,
+  "assembled_dimensions_mm": [
+    110.8,
+    64.8,
+    30.2
+  ]
+}

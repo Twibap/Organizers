@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+from pathlib import Path
+import json,math,traceback
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore
+root=Path(r'C:\Users\Twibap\Workspace\Organizers')
+folder=Path((root/'output/latest-heat-draft.txt').read_text(encoding='utf-8-sig').strip())
+def verify():
+    report={'passed':False}
+    try:
+        doc=App.openDocument(str(folder/'HeatOrganizerReview.FCStd'))
+        visible=[o.Name for o in doc.OrganizerParts.Group if o.ViewObject.Visibility]
+        assert len(visible)==17,visible
+        assert not doc.Construction.ViewObject.Visibility and not doc.References.ViewObject.Visibility
+        assert len(doc.ComponentSamples.Group)==16 and all(o.ViewObject.Visibility for o in doc.ComponentSamples.Group)
+        assert len(doc.OrganizerParts.Group)==31
+        view=Gui.activeDocument().activeView();view.fitAll()
+        view.saveImage(str(folder/'HeatOrganizerReview-reopened.png'),1200,900,'White')
+        detail=App.openDocument(str(folder/'CarGearTray-C.FCStd'))
+        assert len(detail.OrganizerParts.Group)==4
+        assert all(o.Shape.isValid() and len(o.Shape.Solids)==1 for o in detail.OrganizerParts.Group)
+        assert len(detail.ComponentSamples.Group)==16 and all(o.ViewObject.Visibility for o in detail.ComponentSamples.Group)
+        assert detail.CarGearBody.ViewObject.Visibility and detail.CarGearDrawer.ViewObject.Visibility
+        assert not detail.CarGearLid.ViewObject.Visibility
+        b=detail.CarGearBody.Shape.BoundBox
+        assert math.isclose(b.XMin,0,abs_tol=1e-6) and math.isclose(b.YMin,0,abs_tol=1e-6)
+        assert math.isclose(b.XLength,93.6,abs_tol=1e-6) and math.isclose(b.YLength,190.8,abs_tol=1e-6)
+        assert math.isclose(detail.CarGearDrawer.Shape.BoundBox.YMin,-31.6,abs_tol=1e-6)
+        view=Gui.activeDocument().activeView();view.fitAll()
+        view.saveImage(str(folder/'CarGearTray-C-reopened.png'),1200,900,'White')
+        report.update(passed=True,reopened_without_styling=True,visible_parts=len(visible),hidden_lids=14,
+                      visible_component_envelopes=16,detail_reopened=True,detail_visible_print_parts=3,
+                      detail_valid_parts=4,detail_origin_mm=[0,0,0],drawer_display_offset_mm=[0,-32,0])
+        window=Gui.getMainWindow();window.show();window.raise_();window.activateWindow()
+    except Exception:
+        report['error']=traceback.format_exc();App.Console.PrintError(report['error'])
+    (folder/'review-reopen-status.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+QtCore.QTimer.singleShot(1500,verify)

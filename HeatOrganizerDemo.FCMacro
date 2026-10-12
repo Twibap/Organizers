@@ -1,0 +1,98 @@
+# -*- coding: utf-8 -*-
+"""FreeCAD workflow check. Sample dimensions, NOT a fitted Heat insert."""
+from datetime import datetime
+from pathlib import Path
+import json
+import os
+import FreeCAD as App
+import Part
+import MeshPart
+
+PROJECT_ROOT = Path(os.environ.get("ORGANIZER_PROJECT_ROOT", r"C:\Users\Twibap\Workspace\Organizers"))
+# Millimetres: sample values only.
+DEMO_PARAMETERS = {"length": 120.0, "width": 90.0, "height": 30.0,
+                   "wall": 2.0, "base": 2.0, "compartments": 3}
+
+def build_demo(p):
+    columns = p["compartments"]
+    if not isinstance(columns, int) or columns < 1:
+        raise ValueError("compartments must be a positive integer")
+    if any(p[k] <= 0 for k in ("length", "width", "height", "wall", "base")):
+        raise ValueError("All dimensions must be positive")
+    if (p["length"] <= (columns + 1) * p["wall"] or p["width"] <= 2 * p["wall"]
+            or p["height"] <= p["base"]):
+        raise ValueError("Dimensions leave no usable compartment space")
+    doc = App.newDocument("HeatOrganizerDemo")
+    doc.Label = "Heat - MACRO DEMO (sample dimensions)"
+    sheet = doc.addObject("Spreadsheet::Sheet", "Parameters")
+    sheet.Label = "Parameters (mm)"
+    sheet.set("A1", "Sample only - not measured for Heat")
+    rows = [("OuterLength", "length"), ("OuterWidth", "width"),
+            ("OuterHeight", "height"), ("Wall", "wall"), ("Base", "base")]
+    for row, (alias, key) in enumerate(rows, start=2):
+        sheet.set("A" + str(row), alias)
+        sheet.set("B" + str(row), str(p[key]) + " mm")
+        sheet.setAlias("B" + str(row), alias)
+    sheet.setColumnWidth("A", 300)
+    sheet.setColumnWidth("B", 120)
+    doc.recompute()
+    outer = doc.addObject("Part::Box", "OuterBox")
+    outer.setExpression("Length", "Parameters.OuterLength")
+    outer.setExpression("Width", "Parameters.OuterWidth")
+    outer.setExpression("Height", "Parameters.OuterHeight")
+    pocket_length = "(Parameters.OuterLength - %d * Parameters.Wall) / %d" % (columns + 1, columns)
+    pockets = []
+    for index in range(columns):
+        pocket = doc.addObject("Part::Box", "Pocket%d" % (index + 1))
+        pocket.setExpression("Length", pocket_length)
+        pocket.setExpression("Width", "Parameters.OuterWidth - 2 * Parameters.Wall")
+        pocket.setExpression("Height", "Parameters.OuterHeight")
+        pocket.setExpression("Placement.Base.x", "Parameters.Wall + %d * ((%s) + Parameters.Wall)" % (index, pocket_length))
+        pocket.setExpression("Placement.Base.y", "Parameters.Wall")
+        pocket.setExpression("Placement.Base.z", "Parameters.Base")
+        pockets.append(pocket)
+    if len(pockets) == 1:
+        tool = pockets[0]
+    else:
+        tool = doc.addObject("Part::MultiFuse", "PocketTool")
+        tool.Shapes = pockets
+        tool.Refine = True
+    tray = doc.addObject("Part::Cut", "Tray")
+    tray.Label = "Demo tray - %d compartments" % columns
+    tray.Base = outer
+    tray.Tool = tool
+    tray.Refine = True
+    doc.recompute()
+    if tray.Shape.isNull() or not tray.Shape.isValid() or len(tray.Shape.Solids) != 1:
+        raise RuntimeError("Tray is not a valid single solid")
+    if App.GuiUp:
+        import FreeCADGui as Gui
+        for obj in [outer, *pockets, tool]:
+            obj.ViewObject.Visibility = False
+        tray.ViewObject.Visibility = True
+        tray.ViewObject.ShapeColor = (0.92, 0.28, 0.16)
+        Gui.activeDocument().activeView().viewAxonometric()
+        Gui.activeDocument().activeView().fitAll()
+    return doc, tray
+
+def export_demo(doc, tray):
+    output = PROJECT_ROOT / "output" / ("demo_" + datetime.now().strftime("%Y%m%d_%H%M%S_%f"))
+    output.mkdir(parents=True, exist_ok=False)
+    cad_path = output / "HeatOrganizerDemo.FCStd"
+    step_path = output / "HeatOrganizerDemo.step"
+    stl_path = output / "HeatOrganizerDemo.stl"
+    doc.recompute()
+    doc.saveAs(str(cad_path))
+    Part.export([tray], str(step_path))
+    mesh = MeshPart.meshFromShape(Shape=tray.Shape, LinearDeflection=0.1,
+                                  AngularDeflection=0.35, Relative=False)
+    mesh.write(str(stl_path))
+    manifest = {"purpose": "Macro demonstration; not fitted to Heat", "units": "mm",
+                "parameters": DEMO_PARAMETERS, "freecad_version": list(App.Version()),
+                "outputs": [cad_path.name, step_path.name, stl_path.name]}
+    (output / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    App.Console.PrintMessage("Demo files saved to: " + str(output) + "\n")
+    return output
+
+demo_document, demo_tray = build_demo(DEMO_PARAMETERS)
+demo_output = export_demo(demo_document, demo_tray)

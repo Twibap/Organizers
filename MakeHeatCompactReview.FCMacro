@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+from pathlib import Path
+import json,runpy,traceback
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore
+root=Path(r'C:\Users\Twibap\Workspace\Organizers')
+folder=Path((root/'output/latest-heat-draft.txt').read_text(encoding='utf-8-sig').strip())
+def review():
+    report={'saved':False}
+    try:
+        scope=runpy.run_path(str(root/'OpenHeatDraft.FCMacro'));source=scope.get('doc')
+        if source is None or not scope.get('report',{}).get('opened'):raise RuntimeError('opening failed')
+        source.Label='Heat V0.5 - compact car/gear +100x60x10 scoreboard'
+        source.recompute();view=Gui.activeDocument().activeView();view.viewAxonometric();view.fitAll()
+        source.saveAs(str(folder/'HeatOrganizerReview.FCStd'))
+        view.saveImage(str(folder/'HeatOrganizerReview-native.png'),1400,1100,'White')
+        report.update(saved=True,visible_parts=[o.Name for o in source.OrganizerParts.Group if o.ViewObject.Visibility],
+                      valid_parts=sum(o.Shape.isValid() for o in source.OrganizerParts.Group),visible_component_envelopes=len(source.ComponentSamples.Group))
+        detail=App.newDocument('CarGearTrayCompact');detail.Label='자동차·기어8쌍 + 점수판 - 조립110.8x64.8x30.2mm'
+        parts=detail.addObject('App::DocumentObjectGroup','OrganizerParts');parts.Label='출력 부품3개 - 점수판/자동차 트레이/덮개'
+        refs=detail.addObject('App::DocumentObjectGroup','ComponentSamples');refs.Label='구성품 수납 범위 - 출력 제외'
+        b=source.CarGearBody.Shape.BoundBox
+        for obj in [source.CarScoreTray,source.CarGearBody,source.CarGearLid]+list(source.ComponentSamples.Group):
+            target=detail.addObject('Part::Feature',obj.Name);target.Label=obj.Label
+            shape=obj.Shape.copy();shape.translate(App.Vector(-b.XMin,-b.YMin,0))
+            shape.rotate(App.Vector(0,0,0),App.Vector(0,0,1),-90);shape.translate(App.Vector(0,64.8,0))
+            target.Shape=shape
+            target.addProperty('App::PropertyString','SourceCAD','Draft').SourceCAD=str(folder/'HeatOrganizerReview.FCStd')
+            target.addProperty('App::PropertyString','DraftRole','Draft').DraftRole=obj.DraftRole
+            target.ViewObject.ShapeColor=obj.ViewObject.ShapeColor;target.ViewObject.LineColor=obj.ViewObject.LineColor
+            target.ViewObject.Transparency=obj.ViewObject.Transparency;target.ViewObject.DisplayMode='Flat Lines'
+            (refs if obj.DraftRole=='reference_not_printable' else parts).addObject(target)
+            target.ViewObject.Visibility=not obj.Name.endswith('Lid')
+        detail.CarScoreTray.addProperty('App::PropertyVector','AssembledOuterDimensions','Draft').AssembledOuterDimensions=App.Vector(110.8,64.8,30.2)
+        detail.recompute();view=Gui.activeDocument().activeView();view.viewAxonometric();view.fitAll()
+        detail.saveAs(str(folder/'CarGearTray-Compact.FCStd'))
+        view.saveImage(str(folder/'CarGearTray-Compact-native.png'),1400,1000,'White')
+        report['compact_saved']=True
+        for obj in detail.Objects:
+            if obj.Name in ['CarGearBody','CarGearLid'] or obj.Name.startswith(('CarSample','GearSample')):
+                shape=obj.Shape.copy();shape.translate(App.Vector(0,0,20));obj.Shape=shape
+                obj.addProperty('App::PropertyVector','DisplayOffset','Draft').DisplayOffset=App.Vector(0,0,20)
+        detail.Label='자동차·기어/점수판 분해 보기 - 상부20mm 띄움'
+        detail.recompute();view.fitAll();detail.saveAs(str(folder/'CarGearTray-Compact-Exploded.FCStd'))
+        view.saveImage(str(folder/'CarGearTray-Compact-exploded.png'),1400,1100,'White')
+        report.update(exploded_saved=True,detail_valid_parts=sum(o.Shape.isValid() for o in parts.Group),assembled_dimensions_mm=[110.8,64.8,30.2])
+        window=Gui.getMainWindow();window.show();window.raise_();window.activateWindow()
+    except Exception:
+        report['error']=traceback.format_exc();App.Console.PrintError(report['error'])
+    (folder/'review-visibility-status.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+QtCore.QTimer.singleShot(1500,review)

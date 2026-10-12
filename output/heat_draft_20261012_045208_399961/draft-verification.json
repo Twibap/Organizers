@@ -1,0 +1,4 @@
+{
+  "passed": false,
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users\\Twibap\\Workspace\\Organizers\\tools\\headless_compact_draft.py\", line 55, in <module>\n    for f in manifest['stl_files']:assert Mesh.Mesh(str(output/f['file'])).isSolid(),f['file']\n                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: stl/CarGearBody_x1.stl\n"
+}

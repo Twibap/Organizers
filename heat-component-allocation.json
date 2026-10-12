@@ -1,0 +1,115 @@
+{
+  "version": "0.5",
+  "expansions": [
+    "Heavy Rain",
+    "Tunnel Vision"
+  ],
+  "player_sets": {
+    "sets": 8,
+    "cards_each": 24,
+    "basic_each": 12,
+    "starting_each": 3,
+    "stress_each": 3,
+    "heat_each": 6,
+    "storage": "64x95x19 card-only trays, eight trays in four pairs; cars/gears separate shared carrier"
+  },
+  "reserve": {
+    "stress": 24,
+    "heat": 24,
+    "total": 48,
+    "tray": "Reserve"
+  },
+  "garage": {
+    "base_regular": 34,
+    "base_advanced": 62,
+    "expansion_advanced_each": 12,
+    "total": 120,
+    "tray": "Garage",
+    "stacks": [
+      60,
+      60
+    ]
+  },
+  "other_cards": {
+    "legends": 10,
+    "events": 18,
+    "tracks": 8,
+    "combined_set": 36,
+    "sponsorship": 49,
+    "tray": "Other",
+    "total_in_tray": 36,
+    "storage": "36 legends/events/tracks as one set; sponsorship49 in a separate tray",
+    "sponsor_tray": "Sponsor"
+  },
+  "tokens": {
+    "weather": 6,
+    "road_conditions": 12,
+    "press_corner_standees": 2,
+    "rail01": "weather / road / standee bases",
+    "rail02": "two press standees and spare compartment; physical fit unverified",
+    "storage": "WeatherLower / PressUpper in current v0.5 are superseded for weather/road storage by separate 85x66x44 token-fit candidate; PressUpper remains reserved for press pieces",
+    "weather_bundle_mm": [79, 60, 12],
+    "road_conditions_bundle_mm": [28, 28, 24],
+    "bundle_measurement_scope": "all weather6 / road12 pieces in their respective stored bundles",
+    "candidate_usable_depth_mm": {"weather": 13, "road_conditions": 25},
+    "candidate_parts": ["WeatherFitBody", "WeatherFitLid", "RoadFitBody", "RoadFitLid"],
+    "expansion_additions_verified_date": "2026-10-12",
+    "expansion_additions": {
+      "Heavy Rain": {"weather": 0, "road_conditions": 0, "press_corner_standees": 0, "cars": 1, "gears": 1},
+      "Tunnel Vision": {"weather": 0, "road_conditions": 0, "press_corner_standees": 0, "cars": 1, "gears": 1},
+      "Rocky Roads": {"weather": 0, "road_conditions": 0, "press_corner_standees": 0, "cars": 1, "gears": 1},
+      "Legends": {"weather": 0, "road_conditions": 0, "press_corner_standees": 0, "cars": 0, "gears": 0}
+    },
+    "expansion_component_sources": [
+      "https://www.daysofwonder.com/game/heat-heavy-rain/",
+      "https://www.daysofwonder.com/game/heat-tunnel-vision/",
+      "https://www.daysofwonder.com/game/heat-rocky-roads/",
+      "https://www.daysofwonder.com/game/heat-legends/"
+    ]
+  },
+  "flat_stack": {
+    "double_sided_maps": 4,
+    "player_mats": 8,
+    "legends_mat": 1,
+    "championship_mat": 1,
+    "rulebooks": 4,
+    "scorepads": 0,
+    "reserve_mm": 60,
+    "status": "map thickness estimated50; base mats/rules4; expansion mats/rules unmeasured; scoreboard stored separately",
+    "scorepad_storage": "Moved to CarScoreTray; whole stored bundle7mm measured."
+  },
+  "sources": [
+    "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/03/9101-HT-RulesAdvanced-EN_compressed.pdf",
+    "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/03/HTEX1-Rules-EN-FC.pdf",
+    "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/02/9103-HTEX2_EN_RULES_20240924_compressed.pdf"
+  ],
+  "race_car_mm": [
+    11,
+    23,
+    7
+  ],
+  "references": [
+    "https://youtu.be/xePYRwZCSzQ",
+    "https://youtube.com/shorts/PnYFqH4tk2Y"
+  ],
+  "car_gear_carrier": {
+    "cars": 8,
+    "gears": 8,
+    "outer_mm": [
+      110.8,
+      64.8,
+      30.2
+    ],
+    "placement_world_mm": [
+      64.8,
+      110.8
+    ],
+    "arrangement": "4 columns x2 rows; gears lying horizontally",
+    "lower_storage": "Scoreboard whole bundle100x60x7 measured, maximum10mm capacity",
+    "parts": [
+      "CarScoreTray",
+      "CarGearBody",
+      "CarGearLid"
+    ]
+  }
+}

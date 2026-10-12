@@ -1,0 +1,58 @@
+# -*- coding: utf-8 -*-
+from pathlib import Path
+import json,runpy,traceback
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore
+root=Path(r'C:\Users\Twibap\Workspace\Organizers')
+folder=Path((root/'output/latest-heat-draft.txt').read_text(encoding='utf-8-sig').strip())
+def make_review():
+    report={'saved':False}
+    try:
+        scope=runpy.run_path(str(root/'OpenHeatDraft.FCMacro'))
+        doc=scope.get('doc')
+        if doc is None or not scope.get('report',{}).get('opened'): raise RuntimeError('opening failed')
+        doc.Label='Heat V0.4 - Instructions C reference / base +2 expansions'
+        view=Gui.activeDocument().activeView();view.viewAxonometric();view.fitAll()
+        doc.recompute();doc.saveAs(str(folder/'HeatOrganizerReview.FCStd'))
+        view.saveImage(str(folder/'HeatOrganizerReview-native.png'),1400,1100,'White')
+        report.update(saved=True,review_file=str(folder/'HeatOrganizerReview.FCStd'),
+                      visible_parts=[o.Name for o in doc.OrganizerParts.Group if o.ViewObject.Visibility],
+                      valid_solids=sum(o.Shape.isValid() for o in doc.OrganizerParts.Group),native_render_saved=True,
+                      visible_component_envelopes=len(doc.ComponentSamples.Group))
+        detail=App.newDocument('CarGearTrayC')
+        detail.Label='C 자동차·기어 트레이 - 하부 서랍 32mm 인출 표시'
+        parts=detail.addObject('App::DocumentObjectGroup','OrganizerParts')
+        parts.Label='출력 부품 4개 - 서랍은 32mm 인출 표시'
+        refs=detail.addObject('App::DocumentObjectGroup','ComponentSamples')
+        refs.Label='차량 외곽 / 기어 밑판 기준 원통 - 출력 제외'
+        b=doc.CarGearBody.Shape.BoundBox
+        origin=App.Vector(-b.XMin,-b.YMin,0)
+        for source in [doc.CarGearBody,doc.CarGearFrame,doc.CarGearLid,doc.CarGearDrawer]+list(doc.ComponentSamples.Group):
+            target=detail.addObject('Part::Feature',source.Name)
+            target.Label=source.Label
+            shape=source.Shape.copy();shape.translate(origin)
+            if source.Name=='CarGearDrawer': shape.translate(App.Vector(0,-32,0))
+            target.Shape=shape
+            target.addProperty('App::PropertyString','SourceCAD','Draft').SourceCAD=str(folder/'HeatOrganizerReview.FCStd')
+            target.addProperty('App::PropertyString','DraftRole','Draft').DraftRole=source.DraftRole
+            target.ViewObject.ShapeColor=source.ViewObject.ShapeColor
+            target.ViewObject.LineColor=source.ViewObject.LineColor
+            target.ViewObject.Transparency=source.ViewObject.Transparency
+            target.ViewObject.DisplayMode='Flat Lines'
+            is_sample=source.Name.startswith(('CarSample','GearSample'))
+            (refs if is_sample else parts).addObject(target)
+            target.ViewObject.Visibility=not source.Name.endswith('Lid')
+            if source.Name=='CarGearDrawer':
+                target.addProperty('App::PropertyVector','DisplayOffset','Draft').DisplayOffset=App.Vector(0,-32,0)
+                target.Label='하부 서랍 - 내부 높이5mm / 32mm 인출 표시'
+        view=Gui.activeDocument().activeView();view.viewAxonometric();view.fitAll()
+        detail.recompute();detail.saveAs(str(folder/'CarGearTray-C.FCStd'))
+        view.saveImage(str(folder/'CarGearTray-C-native.png'),1400,1000,'White')
+        report.update(detail_saved=True,detail_file=str(folder/'CarGearTray-C.FCStd'),
+                      detail_valid_parts=sum(o.Shape.isValid() for o in parts.Group),drawer_display_offset_mm=[0,-32,0])
+        window=Gui.getMainWindow();window.show();window.raise_();window.activateWindow()
+    except Exception:
+        report['error']=traceback.format_exc();App.Console.PrintError(report['error'])
+    (folder/'review-visibility-status.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+QtCore.QTimer.singleShot(1500,make_review)

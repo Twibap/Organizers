@@ -1,0 +1,483 @@
+{
+  "status": "draft_not_physical_fit_verified",
+  "units": "mm",
+  "parameters": {
+    "BoxX": 290.0,
+    "BoxY": 290.0,
+    "BoxH": 100.0,
+    "Span": 288.0,
+    "Wall": 2.0,
+    "Base": 2.0,
+    "Gap": 0.8,
+    "SleeveW": 58.0,
+    "SleeveL": 89.0,
+    "EdgeClear": 1.0,
+    "LowerH": 13.0,
+    "LidT": 1.6,
+    "LipD": 0.8,
+    "LipClear": 0.3,
+    "LipWall": 1.2,
+    "StackReserve": 60.0,
+    "Headroom": 2.0,
+    "SampleStack": 9.0,
+    "SampleCards": 24.0,
+    "TotalH": 38.0,
+    "PlayerW": 64.0,
+    "PlayerL": 95.0,
+    "PlayerRegionL": 190.8,
+    "CommonL": 96.4,
+    "RailW": 28.80000000000001,
+    "BodyH": 36.4,
+    "UpperH": 23.4,
+    "CardPitch": 0.375
+  },
+  "cells": {
+    "BoxX": "B2",
+    "BoxY": "B3",
+    "BoxH": "B4",
+    "Span": "B5",
+    "Wall": "B6",
+    "Base": "B7",
+    "Gap": "B8",
+    "SleeveW": "B9",
+    "SleeveL": "B10",
+    "EdgeClear": "B11",
+    "LowerH": "B12",
+    "LidT": "B13",
+    "LipD": "B14",
+    "LipClear": "B15",
+    "LipWall": "B16",
+    "StackReserve": "B17",
+    "Headroom": "B18",
+    "SampleStack": "B19",
+    "SampleCards": "B20",
+    "TotalH": "B21",
+    "PlayerW": "B22",
+    "PlayerL": "B23",
+    "PlayerRegionL": "B24",
+    "CommonL": "B25",
+    "RailW": "B26",
+    "BodyH": "B27",
+    "UpperH": "B28",
+    "CardPitch": "B29"
+  },
+  "component_allocation": {
+    "version": "0.2",
+    "expansions": [
+      "Heavy Rain",
+      "Tunnel Vision"
+    ],
+    "player_sets": {
+      "sets": 8,
+      "cards_each": 24,
+      "basic_each": 12,
+      "starting_each": 3,
+      "stress_each": 3,
+      "heat_each": 6
+    },
+    "reserve": {
+      "stress": 24,
+      "heat": 24,
+      "total": 48,
+      "tray": "C01"
+    },
+    "garage": {
+      "base_regular": 34,
+      "base_advanced": 62,
+      "expansion_advanced_each": 12,
+      "total": 120,
+      "tray": "C02",
+      "stacks": [
+        60,
+        60
+      ]
+    },
+    "other_cards": {
+      "legends": 10,
+      "events": 18,
+      "tracks": 8,
+      "combined_set": 36,
+      "sponsorship": 49,
+      "tray": "C04",
+      "total_in_tray": 85,
+      "storage": "sponsorship below, legends/events/tracks combined above; thin separator optional"
+    },
+    "tokens": {
+      "weather": 6,
+      "road_conditions": 12,
+      "press_corner_standees": 2,
+      "rail01": "weather / road / standee bases",
+      "rail02": "two press standees and spare compartment; physical fit unverified"
+    },
+    "flat_stack": {
+      "double_sided_maps": 4,
+      "player_mats": 8,
+      "legends_mat": 1,
+      "championship_mat": 1,
+      "rulebooks": 4,
+      "scorepads": 3,
+      "reserve_mm": 60,
+      "status": "map thickness estimated50; base mats/rules4; expansion mats/rules and scorepads unmeasured"
+    },
+    "sources": [
+      "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/03/9101-HT-RulesAdvanced-EN_compressed.pdf",
+      "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/03/HTEX1-Rules-EN-FC.pdf",
+      "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/02/9103-HTEX2_EN_RULES_20240924_compressed.pdf"
+    ]
+  },
+  "layout": [
+    {
+      "name": "P01",
+      "x": 1.0,
+      "y": 1.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.78,
+        0.22,
+        0.18
+      ]
+    },
+    {
+      "name": "P02",
+      "x": 65.8,
+      "y": 1.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.16,
+        0.43,
+        0.7
+      ]
+    },
+    {
+      "name": "P03",
+      "x": 130.6,
+      "y": 1.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.91,
+        0.66,
+        0.15
+      ]
+    },
+    {
+      "name": "P04",
+      "x": 195.39999999999998,
+      "y": 1.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.18,
+        0.58,
+        0.43
+      ]
+    },
+    {
+      "name": "P05",
+      "x": 1.0,
+      "y": 96.8,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.3,
+        0.33,
+        0.37
+      ]
+    },
+    {
+      "name": "P06",
+      "x": 65.8,
+      "y": 96.8,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.72,
+        0.7,
+        0.65
+      ]
+    },
+    {
+      "name": "P07",
+      "x": 130.6,
+      "y": 96.8,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.9,
+        0.4,
+        0.16
+      ]
+    },
+    {
+      "name": "P08",
+      "x": 195.39999999999998,
+      "y": 96.8,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "player",
+      "color": [
+        0.52,
+        0.32,
+        0.65
+      ]
+    },
+    {
+      "name": "C01",
+      "x": 1.0,
+      "y": 192.6,
+      "width": 64.0,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "reserve_cards",
+      "color": [
+        0.2,
+        0.45,
+        0.57
+      ],
+      "cards": 48,
+      "allocation": "Reserve / stress24 + heat24 = 48 cards"
+    },
+    {
+      "name": "C02",
+      "x": 65.8,
+      "y": 192.6,
+      "width": 128.8,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "garage_cards",
+      "color": [
+        0.2,
+        0.485,
+        0.605
+      ],
+      "cards": 120,
+      "allocation": "Garage / 120 cards in two adjacent stacks of 60"
+    },
+    {
+      "name": "C04",
+      "x": 195.39999999999998,
+      "y": 192.6,
+      "width": 64.0,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "championship_cards",
+      "color": [
+        0.2,
+        0.555,
+        0.6749999999999999
+      ],
+      "cards": 85,
+      "allocation": "Legends10 + events18 + tracks8; sponsorship49 below = 85"
+    },
+    {
+      "name": "Rail01",
+      "x": 260.2,
+      "y": 1,
+      "width": 28.80000000000001,
+      "length": 190.8,
+      "height": 38.0,
+      "role": "tokens",
+      "color": [
+        0.72,
+        0.5,
+        0.22
+      ],
+      "slots": 3
+    },
+    {
+      "name": "Rail02",
+      "x": 260.2,
+      "y": 192.6,
+      "width": 28.80000000000001,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "tokens",
+      "color": [
+        0.72,
+        0.5,
+        0.22
+      ],
+      "slots": 2
+    }
+  ],
+  "part_count": 34,
+  "stl_files": [
+    {
+      "file": "stl/P01Lower_x8.stl",
+      "quantity": 8,
+      "name": "P01Lower",
+      "volume_mm3": 18778.938070170232,
+      "outer_mm": [
+        64.0,
+        95.0,
+        13.0
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/P01Upper_x8.stl",
+      "quantity": 8,
+      "name": "P01Upper",
+      "volume_mm3": 25226.93807017025,
+      "outer_mm": [
+        64.0,
+        95.0,
+        23.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/P01Lid_x8.stl",
+      "quantity": 8,
+      "name": "P01Lid",
+      "volume_mm3": 10011.008,
+      "outer_mm": [
+        64.0,
+        95.0,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/C01Body_x2.stl",
+      "quantity": 2,
+      "name": "C01Body",
+      "volume_mm3": 33407.45065788305,
+      "outer_mm": [
+        64.0,
+        96.4,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/C01Lid_x2.stl",
+      "quantity": 2,
+      "name": "C01Lid",
+      "volume_mm3": 10157.056000000002,
+      "outer_mm": [
+        64.0,
+        96.4,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/C02Body_x1.stl",
+      "quantity": 1,
+      "name": "C02Body",
+      "volume_mm3": 54817.370657883075,
+      "outer_mm": [
+        128.8,
+        96.4,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/C02Lid_x1.stl",
+      "quantity": 1,
+      "name": "C02Lid",
+      "volume_mm3": 20276.224000000006,
+      "outer_mm": [
+        128.8,
+        96.4,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/Rail01_x1.stl",
+      "quantity": 1,
+      "name": "Rail01",
+      "volume_mm3": 43956.02266447457,
+      "outer_mm": [
+        28.80000000000001,
+        190.8,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/Rail01Lid_x1.stl",
+      "quantity": 1,
+      "name": "Rail01Lid",
+      "volume_mm3": 9181.440000000004,
+      "outer_mm": [
+        28.80000000000001,
+        190.8,
+        2.40000000000002
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/Rail02_x1.stl",
+      "quantity": 1,
+      "name": "Rail02",
+      "volume_mm3": 23822.902664472596,
+      "outer_mm": [
+        28.80000000000001,
+        96.4,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/Rail02Lid_x1.stl",
+      "quantity": 1,
+      "name": "Rail02Lid",
+      "volume_mm3": 4655.232000000001,
+      "outer_mm": [
+        28.80000000000001,
+        96.4,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    }
+  ],
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "player_card_usable_depth": 11.0,
+  "player_upper_clear_height_under_lip": 20.599999999999998,
+  "shared_card_usable_depth_under_lip": 33.6,
+  "shared_cards_per_bin_estimate": 86,
+  "maximum_print_part_xy": 190.8,
+  "assumptions": [
+    "Two track expansions add one player each: 8 player modules.",
+    "Player set confirmed: basic12 + starting3 + stress3 + heat6 =24 cards; 8 sets.",
+    "4-map thickness 50 mm is estimated; complete flat stack must fit 60 mm reserve.",
+    "Car/gear/standee/token and scorepad dimensions unmeasured; all-component fit unverified.",
+    "Scorepads require measured storage allocation; add thickness to upper stack if stored above trays.",
+    "Lids have clearance skirts only; snap fit and vertical transport retention not validated."
+  ],
+  "references_not_printable": [
+    "InternalBoxEnvelope",
+    "UpperFlatStackReserve",
+    "SleevedCardSample24"
+  ]
+}

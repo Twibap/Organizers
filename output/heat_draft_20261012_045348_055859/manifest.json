@@ -1,0 +1,692 @@
+{
+  "version": "0.5_compact_car_scoreboard",
+  "reference_pdf": "C:\\Users\\Twibap\\Downloads\\Instructions-Heat-All-In-Board-Game-Insert-Organizer-The-Dicetroyers-min.pdf",
+  "reference_videos": [
+    "https://youtu.be/xePYRwZCSzQ",
+    "https://youtube.com/shorts/PnYFqH4tk2Y"
+  ],
+  "status": "draft_not_physical_fit_verified",
+  "units": "mm",
+  "parameters": {
+    "BoxX": 290.0,
+    "BoxY": 290.0,
+    "BoxH": 100.0,
+    "Span": 288.0,
+    "Wall": 2.0,
+    "Base": 2.0,
+    "Gap": 0.8,
+    "SleeveW": 58.0,
+    "SleeveL": 89.0,
+    "EdgeClear": 1.0,
+    "LowerH": 13.0,
+    "LidT": 1.6,
+    "LipD": 0.8,
+    "LipClear": 0.3,
+    "LipWall": 1.2,
+    "StackReserve": 60.0,
+    "Headroom": 2.0,
+    "SampleStack": 9.0,
+    "SampleCards": 24.0,
+    "TotalH": 38.0,
+    "PlayerW": 64.0,
+    "PlayerL": 95.0,
+    "ModuleW": 64.0,
+    "ModuleH": 19.0,
+    "ModuleBodyH": 17.4,
+    "TokenW": 93.60000000000002,
+    "PlayerRegionL": 190.8,
+    "CommonL": 96.4,
+    "RailW": 93.60000000000001,
+    "BodyH": 36.4,
+    "UpperH": 23.4,
+    "CardPitch": 0.375
+  },
+  "cells": {
+    "BoxX": "B2",
+    "BoxY": "B3",
+    "BoxH": "B4",
+    "Span": "B5",
+    "Wall": "B6",
+    "Base": "B7",
+    "Gap": "B8",
+    "SleeveW": "B9",
+    "SleeveL": "B10",
+    "EdgeClear": "B11",
+    "LowerH": "B12",
+    "LidT": "B13",
+    "LipD": "B14",
+    "LipClear": "B15",
+    "LipWall": "B16",
+    "StackReserve": "B17",
+    "Headroom": "B18",
+    "SampleStack": "B19",
+    "SampleCards": "B20",
+    "TotalH": "B21",
+    "PlayerW": "B22",
+    "PlayerL": "B23",
+    "ModuleW": "B24",
+    "ModuleH": "B25",
+    "ModuleBodyH": "B26",
+    "TokenW": "B27",
+    "PlayerRegionL": "B28",
+    "CommonL": "B29",
+    "RailW": "B30",
+    "BodyH": "B31",
+    "UpperH": "B32",
+    "CardPitch": "B33"
+  },
+  "component_allocation": {
+    "version": "0.5",
+    "expansions": [
+      "Heavy Rain",
+      "Tunnel Vision"
+    ],
+    "player_sets": {
+      "sets": 8,
+      "cards_each": 24,
+      "basic_each": 12,
+      "starting_each": 3,
+      "stress_each": 3,
+      "heat_each": 6,
+      "storage": "64x95x19 card-only trays, eight trays in four pairs; cars/gears separate shared carrier"
+    },
+    "reserve": {
+      "stress": 24,
+      "heat": 24,
+      "total": 48,
+      "tray": "Reserve"
+    },
+    "garage": {
+      "base_regular": 34,
+      "base_advanced": 62,
+      "expansion_advanced_each": 12,
+      "total": 120,
+      "tray": "Garage",
+      "stacks": [
+        60,
+        60
+      ]
+    },
+    "other_cards": {
+      "legends": 10,
+      "events": 18,
+      "tracks": 8,
+      "combined_set": 36,
+      "sponsorship": 49,
+      "tray": "Other",
+      "total_in_tray": 36,
+      "storage": "36 legends/events/tracks as one set; sponsorship49 in a separate tray",
+      "sponsor_tray": "Sponsor"
+    },
+    "tokens": {
+      "weather": 6,
+      "road_conditions": 12,
+      "press_corner_standees": 2,
+      "rail01": "weather / road / standee bases",
+      "rail02": "two press standees and spare compartment; physical fit unverified",
+      "storage": "WeatherLower / PressUpper stacked in a93.6x96.4 module"
+    },
+    "flat_stack": {
+      "double_sided_maps": 4,
+      "player_mats": 8,
+      "legends_mat": 1,
+      "championship_mat": 1,
+      "rulebooks": 4,
+      "scorepads": 0,
+      "reserve_mm": 60,
+      "status": "map thickness estimated50; base mats/rules4; expansion mats/rules unmeasured; scoreboard stored separately",
+      "scorepad_storage": "Moved to CarScoreTray; whole stored bundle7mm measured."
+    },
+    "sources": [
+      "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/03/9101-HT-RulesAdvanced-EN_compressed.pdf",
+      "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/03/HTEX1-Rules-EN-FC.pdf",
+      "https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2025/02/9103-HTEX2_EN_RULES_20240924_compressed.pdf"
+    ],
+    "race_car_mm": [
+      11,
+      23,
+      7
+    ],
+    "references": [
+      "https://youtu.be/xePYRwZCSzQ",
+      "https://youtube.com/shorts/PnYFqH4tk2Y"
+    ],
+    "car_gear_carrier": {
+      "cars": 8,
+      "gears": 8,
+      "outer_mm": [
+        110.8,
+        64.8,
+        30.2
+      ],
+      "placement_world_mm": [
+        64.8,
+        110.8
+      ],
+      "arrangement": "4 columns x2 rows; gears lying horizontally",
+      "lower_storage": "Scoreboard whole bundle100x60x7 measured, maximum10mm capacity",
+      "parts": [
+        "CarScoreTray",
+        "CarGearBody",
+        "CarGearLid"
+      ]
+    }
+  },
+  "layout": [
+    {
+      "name": "P01",
+      "x": 1.0,
+      "y": 0.9999999999999982,
+      "z": 0.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 0,
+      "color": [
+        0.78,
+        0.22,
+        0.18
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P02",
+      "x": 1.0,
+      "y": 0.9999999999999982,
+      "z": 19.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 1,
+      "color": [
+        0.16,
+        0.43,
+        0.7
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P03",
+      "x": 65.8,
+      "y": 0.9999999999999982,
+      "z": 0.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 0,
+      "color": [
+        0.91,
+        0.66,
+        0.15
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P04",
+      "x": 65.8,
+      "y": 0.9999999999999982,
+      "z": 19.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 1,
+      "color": [
+        0.18,
+        0.58,
+        0.43
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P05",
+      "x": 1.0,
+      "y": 96.8,
+      "z": 0.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 0,
+      "color": [
+        0.3,
+        0.33,
+        0.37
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P06",
+      "x": 1.0,
+      "y": 96.8,
+      "z": 19.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 1,
+      "color": [
+        0.72,
+        0.7,
+        0.65
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P07",
+      "x": 65.8,
+      "y": 96.8,
+      "z": 0.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 0,
+      "color": [
+        0.9,
+        0.4,
+        0.16
+      ],
+      "cards": 24
+    },
+    {
+      "name": "P08",
+      "x": 65.8,
+      "y": 96.8,
+      "z": 19.0,
+      "width": 64.0,
+      "length": 95.0,
+      "height": 19.0,
+      "role": "player_cards",
+      "level": 1,
+      "color": [
+        0.52,
+        0.32,
+        0.65
+      ],
+      "cards": 24
+    },
+    {
+      "name": "Reserve",
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "reserve_cards",
+      "color": [
+        0.24,
+        0.52,
+        0.64
+      ],
+      "cards": 48,
+      "allocation": "Reserve / stress24 + heat24 =48",
+      "x": 130.6,
+      "y": 0.9999999999999978,
+      "z": 0.0
+    },
+    {
+      "name": "Sponsor",
+      "width": 64.0,
+      "length": 95.0,
+      "height": 38.0,
+      "role": "sponsor_cards",
+      "color": [
+        0.24,
+        0.52,
+        0.64
+      ],
+      "cards": 49,
+      "allocation": "Sponsorship / base35 + 7 + 7 =49",
+      "x": 130.6,
+      "y": 96.8,
+      "z": 0.0
+    },
+    {
+      "name": "Other",
+      "width": 64.0,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "other_cards",
+      "color": [
+        0.24,
+        0.52,
+        0.64
+      ],
+      "cards": 36,
+      "allocation": "Legends10 + event18 + track8 =36; one set",
+      "x": 130.6,
+      "y": 192.6,
+      "z": 0.0
+    },
+    {
+      "name": "Garage",
+      "width": 128.8,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "garage_cards",
+      "color": [
+        0.18,
+        0.43,
+        0.56
+      ],
+      "cards": 120,
+      "x": 1.0,
+      "y": 192.6,
+      "z": 0.0
+    },
+    {
+      "name": "Tokens",
+      "width": 93.60000000000002,
+      "length": 96.4,
+      "height": 38.0,
+      "role": "weather_press",
+      "color": [
+        0.72,
+        0.5,
+        0.22
+      ],
+      "x": 195.39999999999998,
+      "y": 192.6,
+      "z": 0.0
+    },
+    {
+      "name": "CarGear",
+      "width": 64.8,
+      "length": 110.8,
+      "height": 30.2,
+      "role": "compact_car_gear_scoreboard",
+      "color": [
+        0.31,
+        0.38,
+        0.44
+      ],
+      "cars": 8,
+      "gears": 8,
+      "scoreboard_maximum_height": 10,
+      "x": 195.39999999999995,
+      "y": 0.9999999999999856,
+      "z": 0
+    }
+  ],
+  "part_count": 30,
+  "stl_files": [
+    {
+      "file": "stl/P01Body_x8.stl",
+      "quantity": 8,
+      "name": "P01Body",
+      "volume_mm3": 21506.938070170258,
+      "outer_mm": [
+        64.0,
+        95.0,
+        17.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/P01Lid_x8.stl",
+      "quantity": 8,
+      "name": "P01Lid",
+      "volume_mm3": 10011.008,
+      "outer_mm": [
+        64.0,
+        95.0,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/ReserveBody_x1.stl",
+      "quantity": 1,
+      "name": "ReserveBody",
+      "volume_mm3": 33173.84073464101,
+      "outer_mm": [
+        64.0,
+        95.0,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/ReserveLid_x1.stl",
+      "quantity": 1,
+      "name": "ReserveLid",
+      "volume_mm3": 10011.008,
+      "outer_mm": [
+        64.0,
+        95.0,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/SponsorBody_x1.stl",
+      "quantity": 1,
+      "name": "SponsorBody",
+      "volume_mm3": 33173.840734641184,
+      "outer_mm": [
+        64.0,
+        95.00000000000001,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/SponsorLid_x1.stl",
+      "quantity": 1,
+      "name": "SponsorLid",
+      "volume_mm3": 10011.007999999998,
+      "outer_mm": [
+        64.0,
+        95.00000000000001,
+        2.4000000000000057
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/OtherBody_x1.stl",
+      "quantity": 1,
+      "name": "OtherBody",
+      "volume_mm3": 33545.68073464118,
+      "outer_mm": [
+        64.0,
+        96.4,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/OtherLid_x1.stl",
+      "quantity": 1,
+      "name": "OtherLid",
+      "volume_mm3": 10157.056000000002,
+      "outer_mm": [
+        64.0,
+        96.4,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/GarageBody_x1.stl",
+      "quantity": 1,
+      "name": "GarageBody",
+      "volume_mm3": 61425.818070170295,
+      "outer_mm": [
+        128.8,
+        96.4,
+        36.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/GarageLid_x1.stl",
+      "quantity": 1,
+      "name": "GarageLid",
+      "volume_mm3": 20269.69600000001,
+      "outer_mm": [
+        128.8,
+        96.4,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/WeatherLower_x1.stl",
+      "quantity": 1,
+      "name": "WeatherLower",
+      "volume_mm3": 28088.182664470856,
+      "outer_mm": [
+        93.60000000000002,
+        96.4,
+        13.0
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/PressUpper_x1.stl",
+      "quantity": 1,
+      "name": "PressUpper",
+      "volume_mm3": 33854.58266447101,
+      "outer_mm": [
+        93.60000000000002,
+        96.4,
+        23.4
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/TokensLid_x1.stl",
+      "quantity": 1,
+      "name": "TokensLid",
+      "volume_mm3": 14779.392000000003,
+      "outer_mm": [
+        93.60000000000002,
+        96.4,
+        2.400000000000013
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    },
+    {
+      "file": "stl/CarGearBody_x1.stl",
+      "quantity": 1,
+      "name": "CarGearBody",
+      "volume_mm3": 18225.791999999965,
+      "outer_mm": [
+        64.80000000000004,
+        110.80000000000004,
+        17.200000000000003
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/CarScoreTray_x1.stl",
+      "quantity": 1,
+      "name": "CarScoreTray",
+      "volume_mm3": 14489.216000000002,
+      "outer_mm": [
+        64.80000000000004,
+        110.80000000000004,
+        12.799999999999999
+      ],
+      "print_orientation": "base down"
+    },
+    {
+      "file": "stl/CarGearLid_x1.stl",
+      "quantity": 1,
+      "name": "CarGearLid",
+      "volume_mm3": 8769.791999999998,
+      "outer_mm": [
+        64.80000000000004,
+        110.80000000000004,
+        1.800000000000015
+      ],
+      "print_orientation": "flat lid face down; locating ring up"
+    }
+  ],
+  "freecad_version": [
+    "1",
+    "1",
+    "4",
+    "20260928 (Git shallow)",
+    "Unknown",
+    "2026/09/28 13:46:34",
+    "(HEAD detached at 4fd3bf320)",
+    "4fd3bf320d9566a27e60069fc8387448aaa3a094"
+  ],
+  "player_card_usable_depth": 14.599999999999998,
+  "player_upper_clear_height_under_lip": 14.599999999999998,
+  "shared_card_usable_depth_under_lip": 33.6,
+  "shared_cards_per_bin_estimate": 86,
+  "compact_car_tray": {
+    "AnchorX": 195.39999999999998,
+    "AnchorY": 1.0,
+    "Wall": 1.6,
+    "Floor": 1.2,
+    "Divider": 1.2,
+    "CarL": 23.0,
+    "CarW": 11.0,
+    "CarH": 7.0,
+    "GearD": 15.0,
+    "GearH": 25.0,
+    "CarClear": 1.0,
+    "GearClear": 0.5,
+    "BoardW": 100.0,
+    "BoardL": 60.0,
+    "BoardMeasuredH": 7.0,
+    "BoardCap": 10.0,
+    "LowerHead": 0.6,
+    "TopClear": 1.0,
+    "LidT": 1.2,
+    "LipD": 0.6,
+    "LipWall": 0.8,
+    "LipClear": 0.2,
+    "CarWellL": 25.0,
+    "CarWellW": 13.0,
+    "GearWellD": 16.0,
+    "GearChannelL": 26.0,
+    "CellW": 26.0,
+    "CellL": 30.2,
+    "OuterW": 110.8,
+    "OuterL": 64.8,
+    "LowerH": 11.799999999999999,
+    "UpperH": 17.2,
+    "LidZ": 29.0,
+    "TotalH": 30.2,
+    "SeatFloor": 12.999999999999998
+  },
+  "carrier_assembly_retention": "Two removable stacked trays with alignment keys; physical retention unverified.",
+  "maximum_print_part_xy": 128.8,
+  "assumptions": [
+    "Two track expansions add one player each: 8 card-only modules stacked in four pairs; cars/gears in a shared carrier.",
+    "Player set confirmed: basic12 + starting3 + stress3 + heat6 =24 cards; 8 sets.",
+    "4-map thickness 50 mm is estimated; complete flat stack must fit 60 mm reserve.",
+    "Measured car11x23x7 and gear baseD15/H25; lying horizontally. Whole gear assumed within D15 cylinder.",
+    "Compact 4-column x2-row car/gear tray above100x60x10 maximum scoreboard bundle. Measured whole bundle7mm.",
+    "Scoreboard bundle7mm measured, stored below cars; removed from upper flat-stack allocation.",
+    "Lids have clearance skirts only; snap fit and vertical transport retention not validated."
+  ],
+  "references_not_printable": [
+    "InternalBoxEnvelope",
+    "UpperFlatStackReserve",
+    "SleevedCardSample24",
+    "CarSampleP01",
+    "CarSampleP02",
+    "CarSampleP03",
+    "CarSampleP04",
+    "CarSampleP05",
+    "CarSampleP06",
+    "CarSampleP07",
+    "CarSampleP08",
+    "GearSampleP01",
+    "GearSampleP02",
+    "GearSampleP03",
+    "GearSampleP04",
+    "GearSampleP05",
+    "GearSampleP06",
+    "GearSampleP07",
+    "GearSampleP08",
+    "ScoreboardSample"
+  ]
+}

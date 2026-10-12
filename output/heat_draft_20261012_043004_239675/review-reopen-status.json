@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "reopened_without_styling": true,
+  "visible_parts": 17,
+  "hidden_lids": 14,
+  "visible_component_envelopes": 16,
+  "detail_reopened": true,
+  "detail_visible_print_parts": 3,
+  "detail_valid_parts": 4,
+  "detail_origin_mm": [
+    0,
+    0,
+    0
+  ],
+  "drawer_display_offset_mm": [
+    0,
+    -32,
+    0
+  ]
+}

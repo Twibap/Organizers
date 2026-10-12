@@ -1,0 +1,328 @@
+# -*- coding: utf-8 -*-
+"""Heat organizer draft: native parametric Part objects, mm, not fit-verified."""
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+import json
+import math
+import os
+import FreeCAD as App
+import Part
+import MeshPart
+
+PROJECT_ROOT = Path(os.environ.get('ORGANIZER_PROJECT_ROOT', r'C:\Users\Twibap\Workspace\Organizers'))
+MEASUREMENTS = json.loads((PROJECT_ROOT / 'heat-measurements.json').read_text(encoding='utf-8-sig'))
+
+
+def build_draft():
+    doc = App.newDocument('HeatOrganizerDraft')
+    doc.Label = 'Heat organizer - DRAFT / base + 2 expansions'
+    sheet = doc.addObject('Spreadsheet::Sheet', 'Parameters')
+    sheet.Label = 'Draft parameters (mm)'
+    sheet.set('A1', 'DRAFT - measured inputs + provisional layout')
+    rows = [
+        ('BoxX', MEASUREMENTS['box_inside']['length']),
+        ('BoxY', MEASUREMENTS['box_inside']['width']),
+        ('BoxH', MEASUREMENTS['box_inside']['height']),
+        ('Span', 288), ('Wall', 2), ('Base', 2), ('Gap', 0.8),
+        ('SleeveW', MEASUREMENTS['sleeved_card']['width']),
+        ('SleeveL', MEASUREMENTS['sleeved_card']['height']),
+        ('EdgeClear', 1), ('LowerH', 13), ('LidT', 1.6),
+        ('LipD', 0.8), ('LipClear', 0.3), ('LipWall', 1.2),
+        ('StackReserve', 60), ('Headroom', 2),
+        ('SampleStack', MEASUREMENTS['sleeved_card_stack_measurement']['design_basis_stack_height']),
+        ('SampleCards', MEASUREMENTS['sleeved_card_stack_measurement']['card_count']),
+        ('TotalH', '=BoxH - StackReserve - Headroom'),
+        ('PlayerW', '=SleeveW + 2 * EdgeClear + 2 * Wall'),
+        ('PlayerL', '=SleeveL + 2 * EdgeClear + 2 * Wall'),
+        ('ModuleW', '=PlayerW + 36 mm'), ('ModuleH', '=TotalH / 2'),
+        ('ModuleBodyH', '=ModuleH - LidT'), ('TokenW', '=Span - 3 * (PlayerW + Gap)'),
+        ('PlayerRegionL', '=2 * PlayerL + Gap'),
+        ('CommonL', '=Span - 2 * (PlayerL + Gap)'),
+        ('RailW', '=Span - 2 * (ModuleW + Gap) - (PlayerW + Gap)'),
+        ('BodyH', '=TotalH - LidT'),
+        ('UpperH', '=BodyH - LowerH'),
+        ('CardPitch', '=SampleStack / SampleCards'),
+    ]
+    cells = {}
+    for row, (alias, value) in enumerate(rows, 2):
+        cell = 'B' + str(row)
+        cells[alias] = cell
+        sheet.set('A' + str(row), alias)
+        sheet.set(cell, str(value) if isinstance(value, str) or alias == 'SampleCards' else str(value) + ' mm')
+        sheet.setAlias(cell, alias)
+    sheet.setColumnWidth('A', 230)
+    sheet.setColumnWidth('B', 250)
+    sheet.set('D2', '4 maps + all mats/rules reserved above trays')
+    sheet.set('D3', 'Base common mats INCLUDED in measured 4 mm')
+    sheet.set('D4', 'Car, gear, scorepad and token sizes unmeasured')
+    sheet.set('D5', 'Simple locating lids; retention not validated')
+    sheet.setColumnWidth('D', 450)
+    doc.recompute()
+    p = {alias: float(App.Units.Quantity(sheet.get(cell)).Value) for alias, cell in cells.items()}
+    if min(p['RailW'] - 2 * p['Wall'], p['CommonL'] - 2 * p['Wall'], p['UpperH'] - p['Base'] - p['LipD']) <= 0:
+        raise ValueError('Parameters leave no usable organizer space')
+    construction = doc.addObject('App::DocumentObjectGroup', 'Construction')
+    construction.Label = 'Construction - hidden'
+    final_group = doc.addObject('App::DocumentObjectGroup', 'OrganizerParts')
+    final_group.Label = 'Organizer parts - 29 pieces / reference redesign v0.3'
+    reference_group = doc.addObject('App::DocumentObjectGroup', 'References')
+    reference_group.Label = 'Box / upper stack / sample cards - not printable'
+    parts, lids, colors, layout = [], [], {}, []
+
+    def expr(obj, prop, value):
+        obj.setExpression(prop, str(value))
+
+    def box(name, width, length, height, x, y, z):
+        obj = doc.addObject('Part::Box', name)
+        for prop, value in [('Length', width), ('Width', length), ('Height', height),
+                            ('Placement.Base.x', x), ('Placement.Base.y', y), ('Placement.Base.z', z)]:
+            expr(obj, prop, value)
+        construction.addObject(obj)
+        return obj
+
+    def feature(name, typ, base, tool):
+        obj = doc.addObject(typ, name)
+        obj.Base, obj.Tool = base, tool
+        obj.Refine = True
+        construction.addObject(obj)
+        return obj
+
+    def finish(obj, label, color, role, lid=False):
+        construction.removeObject(obj)
+        final_group.addObject(obj)
+        obj.Label = label
+        obj.addProperty('App::PropertyString', 'DraftRole', 'Draft').DraftRole = role
+        obj.addProperty('App::PropertyString', 'FitStatus', 'Draft').FitStatus = 'Provisional; no physical fit test'
+        parts.append(obj)
+        colors[obj.Name] = color
+        if lid:
+            lids.append(obj)
+        return obj
+
+    def tray(name, width, length, height, x, y, z, slots, notch, label, color, role):
+        outer = box(name + 'Outer', width, length, height, x, y, z)
+        cavity_length = '((' + length + ') - ' + str(slots + 1) + ' * Parameters.Wall) / ' + str(slots)
+        cavities = []
+        for index in range(slots):
+            cavity = box(name + 'Pocket' + str(index + 1), '(' + width + ') - 2 * Parameters.Wall',
+                         cavity_length, height, '(' + x + ') + Parameters.Wall',
+                         '(' + y + ') + Parameters.Wall + ' + str(index) + ' * ((' + cavity_length + ') + Parameters.Wall)',
+                         '(' + z + ') + Parameters.Base')
+            cavities.append(cavity)
+        if slots == 1:
+            tool = cavities[0]
+        else:
+            tool = doc.addObject('Part::MultiFuse', name + 'PocketTool')
+            tool.Shapes, tool.Refine = cavities, True
+            construction.addObject(tool)
+        hollow = feature(name + 'Hollow', 'Part::Cut', outer, tool)
+        cutter = doc.addObject('Part::Cylinder', name + 'FingerCut')
+        cutter.Placement.Rotation = App.Rotation(App.Vector(0, 0, 1), App.Vector(0, 1, 0))
+        cutter.Radius = notch
+        expr(cutter, 'Height', 'Parameters.Wall + 2 mm')
+        expr(cutter, 'Placement.Base.x', '(' + x + ') + (' + width + ') / 2')
+        expr(cutter, 'Placement.Base.y', '(' + y + ') - 1 mm')
+        expr(cutter, 'Placement.Base.z', '(' + z + ') + (' + height + ')')
+        construction.addObject(cutter)
+        final = feature(name, 'Part::Cut', hollow, cutter)
+        return finish(final, label, color, role)
+
+    def lid(name, width, length, x, y, label, color, slots=1, z='Parameters.BodyH', split_x=None, split_y=None):
+        plate = box(name + 'Plate', width, length, 'Parameters.LidT', x, y, z)
+        lip_w = '(' + width + ') - 2 * (Parameters.Wall + Parameters.LipClear)'
+        lip_l = '(' + length + ') - 2 * (Parameters.Wall + Parameters.LipClear)'
+        lip_x = '(' + x + ') + Parameters.Wall + Parameters.LipClear'
+        lip_y = '(' + y + ') + Parameters.Wall + Parameters.LipClear'
+        lip_z = '(' + z + ') - Parameters.LipD'
+        outer = box(name + 'LipOuter', lip_w, lip_l, 'Parameters.LipD + 0.05 mm', lip_x, lip_y, lip_z)
+        inner = box(name + 'LipInner', '(' + lip_w + ') - 2 * Parameters.LipWall',
+                    '(' + lip_l + ') - 2 * Parameters.LipWall', 'Parameters.LipD + 0.1 mm',
+                    '(' + lip_x + ') + Parameters.LipWall', '(' + lip_y + ') + Parameters.LipWall', lip_z)
+        ring = feature(name + 'Ring', 'Part::Cut', outer, inner)
+        # Interrupt the skirt at token tray partitions; otherwise it hits them.
+        cavity_length = '((' + length + ') - ' + str(slots + 1) + ' * Parameters.Wall) / ' + str(slots)
+        for index in range(slots - 1):
+            divider_y = '(' + y + ') + Parameters.Wall + ' + str(index + 1) + ' * (' + cavity_length + ') + ' + str(index) + ' * Parameters.Wall - Parameters.LipClear'
+            clearance = box(name + 'DividerGap' + str(index + 1), width, 'Parameters.Wall + 2 * Parameters.LipClear',
+                            'Parameters.LipD + 0.1 mm', x, divider_y, lip_z)
+            ring = feature(name + 'SkirtClearance' + str(index + 1), 'Part::Cut', ring, clearance)
+        if split_x is not None:
+            gap = box(name + 'VerticalGap', 'Parameters.Wall + Parameters.Gap + 2 * Parameters.LipClear', length,
+                      'Parameters.LipD + 0.1 mm', '('+x+') + ('+split_x+') - Parameters.LipClear', y, lip_z)
+            ring = feature(name + 'ClearVertical', 'Part::Cut', ring, gap)
+        if split_y is not None:
+            gap = box(name + 'HorizontalGap', width, 'Parameters.Wall + 2 * Parameters.LipClear',
+                      'Parameters.LipD + 0.1 mm', x, '('+y+') + ('+split_y+') - Parameters.LipClear', lip_z)
+            ring = feature(name + 'ClearHorizontal', 'Part::Cut', ring, gap)
+        obj = feature(name, 'Part::Fuse', plate, ring)
+        return finish(obj, label, color, 'lid', True)
+
+    player_colors = [(0.78,0.22,0.18),(0.16,0.43,0.70),(0.91,0.66,0.15),(0.18,0.58,0.43),
+                     (0.30,0.33,0.37),(0.72,0.70,0.65),(0.90,0.40,0.16),(0.52,0.32,0.65)]
+
+    def pocket_tray(name, width, length, height, x, y, z, pockets, label, color, role):
+        outer = box(name+'Outer',width,length,height,x,y,z)
+        cuts=[]
+        for i,(cw,cl,dx,dy) in enumerate(pockets):
+            cuts.append(box(name+'Pocket'+str(i),cw,cl,height,'('+x+') + ('+dx+')',
+                            '('+y+') + ('+dy+')','('+z+') + Parameters.Base'))
+        tool=doc.addObject('Part::MultiFuse',name+'PocketTool')
+        tool.Shapes,tool.Refine=cuts,True
+        construction.addObject(tool)
+        hollow=feature(name+'Hollow','Part::Cut',outer,tool)
+        cutter=doc.addObject('Part::Cylinder',name+'FingerCut')
+        cutter.Placement.Rotation=App.Rotation(App.Vector(0,0,1),App.Vector(0,1,0))
+        cutter.Radius=8
+        expr(cutter,'Height','Parameters.Wall + 2 mm')
+        expr(cutter,'Placement.Base.x','('+x+') + Parameters.PlayerW / 2')
+        expr(cutter,'Placement.Base.y','('+y+') - 1 mm')
+        expr(cutter,'Placement.Base.z','('+z+') + ('+height+')')
+        construction.addObject(cutter)
+        final=feature(name,'Part::Cut',hollow,cutter)
+        return finish(final,label,color,role)
+
+    # Four footprint positions, two independently removable ready sets per position.
+    for row in range(2):
+        for col in range(2):
+            for level in range(2):
+                index=(row*2+col)*2+level+1
+                name='P%02d'%index
+                x='1 mm + %d * (Parameters.ModuleW + Parameters.Gap)'%col
+                y='1 mm + %d * (Parameters.PlayerL + Parameters.Gap)'%row
+                z='%d * Parameters.ModuleH'%level
+                color=player_colors[index-1]
+                pockets=[
+                    ('Parameters.PlayerW - 2 * Parameters.Wall','Parameters.PlayerL - 2 * Parameters.Wall','Parameters.Wall','Parameters.Wall'),
+                    ('Parameters.ModuleW - Parameters.PlayerW - Parameters.Wall','Parameters.PlayerL - 3 * Parameters.Wall - 32 mm','Parameters.PlayerW','Parameters.Wall'),
+                    ('Parameters.ModuleW - Parameters.PlayerW - Parameters.Wall','32 mm','Parameters.PlayerW','Parameters.PlayerL - Parameters.Wall - 32 mm')]
+                body=pocket_tray(name+'Body','Parameters.ModuleW','Parameters.PlayerL','Parameters.ModuleBodyH',x,y,z,pockets,
+                                name+' - READY SET / 24 cards + car + gear; car fit provisional',color,'ready_player_set')
+                body.addProperty('App::PropertyInteger','CardCount','Contents').CardCount=24
+                body.addProperty('App::PropertyString','PocketSizes','Contents').PocketSizes='Card60x91; car34x57; gear34x32 mm; height14.6 under lid lip'
+                lid(name+'Lid','Parameters.ModuleW','Parameters.PlayerL',x,y,name+' - locating lid',color,
+                    z='('+z+') + Parameters.ModuleBodyH',split_x='Parameters.PlayerW - Parameters.Wall',
+                    split_y='Parameters.PlayerL - 2 * Parameters.Wall - 32 mm')
+                layout.append({'name':name,'x':1+col*(p['ModuleW']+p['Gap']),'y':1+row*(p['PlayerL']+p['Gap']),
+                               'z':level*p['ModuleH'],'width':p['ModuleW'],'length':p['PlayerL'],'height':p['ModuleH'],
+                               'role':'ready_player_set','level':level,'color':list(color),'cards':24})
+    side_x='1 mm + 2 * (Parameters.ModuleW + Parameters.Gap)'
+    common_y='1 mm + 2 * (Parameters.PlayerL + Parameters.Gap)'
+    common_specs=[
+        ('Reserve',side_x,'1 mm','Parameters.PlayerW','Parameters.PlayerL','Reserve / stress24 + heat24 =48','reserve_cards',48),
+        ('Sponsor',side_x,'1 mm + Parameters.PlayerL + Parameters.Gap','Parameters.PlayerW','Parameters.PlayerL','Sponsorship / base35 + 7 + 7 =49','sponsor_cards',49),
+        ('Other','1 mm + 2 * (Parameters.PlayerW + Parameters.Gap)',common_y,'Parameters.PlayerW','Parameters.CommonL','Legends10 + event18 + track8 =36; one set','other_cards',36)]
+    for name,x,y,w,l,label,role,count in common_specs:
+        color=(0.24,0.52,0.64)
+        body=tray(name+'Body',w,l,'Parameters.BodyH',x,y,'0 mm',1,10,label,color,role)
+        body.addProperty('App::PropertyInteger','CardCount','Contents').CardCount=count
+        lid(name+'Lid',w,l,x,y,name+' - locating lid',color)
+        # Evaluated coordinates from the completed native shape are recorded later.
+        layout.append({'name':name,'width':p['PlayerW'],'length':p['PlayerL'] if name!='Other' else p['CommonL'],
+                       'height':p['TotalH'],'role':role,'color':list(color),'cards':count,'allocation':label})
+    gx='1 mm'
+    gy=common_y
+    gw='2 * Parameters.PlayerW + Parameters.Gap'
+    garage=pocket_tray('GarageBody',gw,'Parameters.CommonL','Parameters.BodyH',gx,gy,'0 mm',
+                     [('(2 * Parameters.PlayerW + Parameters.Gap - 3 * Parameters.Wall) / 2','Parameters.CommonL - 2 * Parameters.Wall','Parameters.Wall','Parameters.Wall'),
+                      ('(2 * Parameters.PlayerW + Parameters.Gap - 3 * Parameters.Wall) / 2','Parameters.CommonL - 2 * Parameters.Wall','(2 * Parameters.PlayerW + Parameters.Gap + Parameters.Wall) / 2','Parameters.Wall')],
+                     'Garage /120 cards; one carrier, 60 cards per bay',(0.18,0.43,0.56),'garage_cards')
+    garage.addProperty('App::PropertyInteger','CardCount','Contents').CardCount=120
+    lid('GarageLid',gw,'Parameters.CommonL',gx,gy,'Garage - one lid',(0.18,0.43,0.56),
+        split_x='(2 * Parameters.PlayerW + Parameters.Gap - Parameters.Wall) / 2')
+    layout.append({'name':'Garage','width':2*p['PlayerW']+p['Gap'],'length':p['CommonL'],'height':p['TotalH'],
+                   'role':'garage_cards','color':[0.18,0.43,0.56],'cards':120})
+    tx='1 mm + 3 * (Parameters.PlayerW + Parameters.Gap)'
+    tc=(0.72,0.50,0.22)
+    tray('WeatherLower','Parameters.TokenW','Parameters.CommonL','Parameters.LowerH',tx,common_y,'0 mm',2,6,
+         'Weather6 / road conditions12 - low serving tray; fit provisional',tc,'weather_road')
+    tray('PressUpper','Parameters.TokenW','Parameters.CommonL','Parameters.UpperH',tx,common_y,'Parameters.LowerH',1,6,
+         'Press corner standees2 - removable upper tray; fit provisional',tc,'press_standees')
+    lid('TokensLid','Parameters.TokenW','Parameters.CommonL',tx,common_y,'Tokens - locating lid',tc)
+    layout.append({'name':'Tokens','width':p['TokenW'],'length':p['CommonL'],'height':p['TotalH'],'role':'weather_press','color':list(tc)})
+    rx='1 mm + 2 * (Parameters.ModuleW + Parameters.Gap) + Parameters.PlayerW + Parameters.Gap'
+    tray('Accessory','Parameters.RailW','Parameters.PlayerRegionL','Parameters.BodyH',rx,'1 mm','0 mm',3,5,
+         'Small spare accessories / standee bases; no mandatory component fit claimed',tc,'accessory_spare')
+    lid('AccessoryLid','Parameters.RailW','Parameters.PlayerRegionL',rx,'1 mm','Accessory - locating lid',tc,slots=3)
+    layout.append({'name':'Accessory','width':p['RailW'],'length':p['PlayerRegionL'],'height':p['TotalH'],'role':'spare','color':list(tc)})
+    refs = [box('InternalBoxEnvelope', 'Parameters.BoxX', 'Parameters.BoxY', 'Parameters.BoxH', '0 mm', '0 mm', '0 mm'),
+            box('UpperFlatStackReserve', 'Parameters.Span', 'Parameters.Span', 'Parameters.StackReserve', '1 mm', '1 mm', 'Parameters.TotalH'),
+            box('SleevedCardSample24', 'Parameters.SleeveW', 'Parameters.SleeveL', 'Parameters.SampleStack',
+                '1 mm + Parameters.Wall + Parameters.EdgeClear', '1 mm + Parameters.Wall + Parameters.EdgeClear', 'Parameters.Base')]
+    for ref in refs:
+        construction.removeObject(ref)
+        reference_group.addObject(ref)
+        ref.addProperty('App::PropertyString', 'DraftRole', 'Draft').DraftRole = 'reference_not_printable'
+    doc.recompute()
+    if App.GuiUp:
+        import FreeCADGui as Gui
+        for obj in construction.Group + refs:
+            obj.ViewObject.Visibility = False
+        for obj in parts:
+            obj.ViewObject.Visibility = obj not in lids
+            obj.ViewObject.ShapeColor = colors[obj.Name]
+            obj.ViewObject.LineColor = (0.15, 0.17, 0.20)
+        Gui.activeDocument().activeView().viewAxonometric()
+        Gui.activeDocument().activeView().fitAll()
+    for module in layout:
+        obj=doc.getObject(module['name']+'Body') or doc.getObject(module['name']+'Lower') or doc.getObject(module['name'])
+        if obj is None and module['name']=='Tokens': obj=doc.WeatherLower
+        bounds=obj.Shape.BoundBox
+        module['x'],module['y'],module['z']=bounds.XMin,bounds.YMin,bounds.ZMin
+    return doc, parts, lids, refs, p, cells, layout, colors
+
+
+def export_draft(doc, parts, lids, refs, p, cells, layout, colors):
+    stamp = datetime.now(timezone(timedelta(hours=9))).strftime('%Y%m%d_%H%M%S_%f')
+    output = PROJECT_ROOT / 'output' / ('heat_draft_' + stamp)
+    output.mkdir(parents=True, exist_ok=False)
+    (output / 'stl').mkdir()
+    doc.recompute()
+    doc.saveAs(str(output / 'HeatOrganizerDraft.FCStd'))
+    Part.export(parts, str(output / 'HeatOrganizerDraft-assembled.step'))
+    unique = [('P01Body',8),('P01Lid',8),('ReserveBody',1),('ReserveLid',1),('SponsorBody',1),('SponsorLid',1),('OtherBody',1),('OtherLid',1),('GarageBody',1),('GarageLid',1),('WeatherLower',1),('PressUpper',1),('TokensLid',1),('Accessory',1),('AccessoryLid',1)]
+    stls = []
+    for name, quantity in unique:
+        obj = doc.getObject(name)
+        shape = obj.Shape.copy()
+        # Print lids with the broad top face on the bed and locating ring upward.
+        if name.endswith('Lid'):
+            shape.rotate(App.Vector(0, 0, 0), App.Vector(1, 0, 0), 180)
+        bounds = shape.BoundBox
+        shape.translate(App.Vector(-bounds.XMin, -bounds.YMin, -bounds.ZMin))
+        mesh = MeshPart.meshFromShape(Shape=shape, LinearDeflection=0.08, AngularDeflection=0.3, Relative=False)
+        file_name = name + '_x' + str(quantity) + '.stl'
+        mesh.write(str(output / 'stl' / file_name))
+        stls.append({'file': 'stl/' + file_name, 'quantity': quantity, 'name': name,
+                     'volume_mm3': shape.Volume, 'outer_mm': [shape.BoundBox.XLength, shape.BoundBox.YLength, shape.BoundBox.ZLength],
+                     'print_orientation': 'flat lid face down; locating ring up' if name.endswith('Lid') else 'base down'})
+    preview = []
+    for obj in parts:
+        if obj in lids:
+            continue
+        vertices, triangles = obj.Shape.tessellate(0.25)
+        preview.append({'name': obj.Name, 'color': list(colors[obj.Name]),
+                        'vertices': [[v.x, v.y, v.z] for v in vertices], 'triangles': [list(t) for t in triangles]})
+    (output / 'preview-mesh.json').write_text(json.dumps(preview), encoding='utf-8')
+    shared_depth = p['BodyH'] - p['LipD'] - p['Base']
+    manifest = {'version':'0.3_reference_redesign', 'reference_videos':['https://youtu.be/xePYRwZCSzQ','https://youtube.com/shorts/PnYFqH4tk2Y'], 'status': 'draft_not_physical_fit_verified', 'units': 'mm', 'parameters': p, 'cells': cells,
+                'component_allocation': json.loads((PROJECT_ROOT / 'heat-component-allocation.json').read_text(encoding='utf-8')), 'layout': layout, 'part_count': len(parts), 'stl_files': stls, 'freecad_version': list(App.Version()),
+                'player_card_usable_depth': p['ModuleBodyH'] - p['Base'] - p['LipD'],
+                'player_upper_clear_height_under_lip': p['ModuleBodyH'] - p['Base'] - p['LipD'],
+                'shared_card_usable_depth_under_lip': shared_depth,
+                'shared_cards_per_bin_estimate': math.floor((shared_depth - 1) / p['CardPitch']),
+                'maximum_print_part_xy': max(max(s['outer_mm'][:2]) for s in stls),
+                'assumptions': ['Two track expansions add one player each: 8 ready modules stacked in four pairs.',
+                                'Player set confirmed: basic12 + starting3 + stress3 + heat6 =24 cards; 8 sets.',
+                                '4-map thickness 50 mm is estimated; complete flat stack must fit 60 mm reserve.',
+                                'Car pocket34x57x14.6 and gear34x32x14.6 are provisional; car/gear actual dimensions unmeasured.',
+                                'Scorepads require measured storage allocation; add thickness to upper stack if stored above trays.',
+                                'Lids have clearance skirts only; snap fit and vertical transport retention not validated.'],
+                'references_not_printable': [obj.Name for obj in refs]}
+    (output / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
+    (PROJECT_ROOT / 'output' / 'latest-heat-draft.txt').write_text(str(output), encoding='utf-8')
+    App.Console.PrintMessage('Heat draft exported to: ' + str(output) + '\n')
+    return output
+
+
+draft_document, draft_parts, draft_lids, draft_refs, draft_parameters, draft_cells, draft_layout, draft_colors = build_draft()
+draft_output = export_draft(draft_document, draft_parts, draft_lids, draft_refs, draft_parameters, draft_cells, draft_layout, draft_colors)

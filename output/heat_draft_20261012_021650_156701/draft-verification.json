@@ -1,0 +1,4 @@
+{
+  "passed": false,
+  "error": "Traceback (most recent call last):\n  File \"C:\\Users/Twibap/Workspace/Organizers/tools\\headless_draft.py\", line 34, in <module>\n    assert overlap < 1e-6, (first.Name, second.Name, overlap)\n           ^^^^^^^^^^^^^^\nAssertionError: ('Rail01', 'Rail01Lid', 7.679999999999892)\n"
+}

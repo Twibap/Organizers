@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "reopened_without_styling": true,
+  "visible_parts": 16,
+  "component_envelopes": 17,
+  "compact_reopened": true,
+  "compact_valid_parts": 3,
+  "compact_dimensions_mm": [
+    110.8,
+    64.8,
+    30.2
+  ],
+  "scoreboard_capacity_mm": [
+    100,
+    60,
+    10
+  ],
+  "exploded_reopened": true,
+  "exploded_display_offset_mm": [
+    0,
+    0,
+    20
+  ]
+}

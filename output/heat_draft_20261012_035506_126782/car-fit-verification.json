@@ -1,0 +1,19 @@
+{
+  "nominal_car_mm": [
+    11,
+    23,
+    7
+  ],
+  "player_car_compartments_checked": [
+    "P01Body",
+    "P02Body",
+    "P03Body",
+    "P04Body",
+    "P05Body",
+    "P06Body",
+    "P07Body",
+    "P08Body"
+  ],
+  "bounding_box_proxies_fit": true,
+  "actual_print_fit_test": false
+}

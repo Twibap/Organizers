@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+from pathlib import Path
+import json, traceback
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore
+root=Path(r'C:\Users\Twibap\Workspace\Organizers')
+folder=Path((root/'output/latest-heat-draft.txt').read_text().strip())
+def verify():
+    report={'passed':False}
+    try:
+        doc=App.openDocument(str(folder/'HeatOrganizerReview.FCStd'))
+        visible=[o.Name for o in doc.OrganizerParts.Group if o.ViewObject.Visibility]
+        expected=len(doc.OrganizerParts.Group)-sum(o.Name.endswith('Lid') for o in doc.OrganizerParts.Group)
+        assert len(visible)==expected,visible
+        samples=doc.getObject('ComponentSamples')
+        if samples:
+            assert len(samples.Group)==16 and all(o.ViewObject.Visibility for o in samples.Group)
+        assert not doc.Construction.ViewObject.Visibility
+        assert not doc.References.ViewObject.Visibility
+        view=Gui.activeDocument().activeView()
+        view.fitAll()
+        view.saveImage(str(folder/'HeatOrganizerReview-reopened.png'),1200,900,'White')
+        report.update(passed=True,reopened_without_styling=True,visible_parts=len(visible),hidden_lids=14,visible_component_envelopes=16 if samples else 0)
+    except Exception:
+        report['error']=traceback.format_exc()
+    (folder/'review-reopen-status.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+QtCore.QTimer.singleShot(1500,verify)

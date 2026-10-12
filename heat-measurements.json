@@ -1,0 +1,153 @@
+{
+  "game": "Heat: Pedal to the Metal",
+  "units": "mm",
+  "included_expansions": [
+    "Heavy Rain",
+    "Tunnel Vision"
+  ],
+  "cards_sleeved": true,
+  "sleeve_product": null,
+  "sleeved_card": {
+    "width": 58,
+    "height": 89
+  },
+  "player_card_stack_height": 9,
+  "storage_orientation": null,
+  "design_scope": {
+    "maximum_expansion_count": 2,
+    "base_double_sided_map_count": 2,
+    "double_sided_maps_per_expansion": 1,
+    "maximum_double_sided_map_count": 4,
+    "player_mats_per_expansion": 1,
+    "rulebooks_per_expansion": 1
+  },
+  "box_inside": {
+    "length": 290,
+    "width": 290,
+    "height": 100
+  },
+  "box_inside_provenance": {
+    "length_width": "Manufacturer-published internal box dimensions; user's copy not measured in X/Y.",
+    "height": "User measured internal height 100 mm; agrees with manufacturer-published internal dimensions.",
+    "sources": [
+      "https://www.inserty.cz/inserty/insert-heat-4-rozsireni/?variantId=4479",
+      "https://www.kalkared.eu/user/documents/upload/Manual_CE/999_HEAT_CZE_ENG_250217.pdf"
+    ],
+    "edition_note": "Internal dimensions may vary by a few mm with printing/edition. Insert footprints are not box dimensions."
+  },
+  "flat_components": {
+    "base_maps_stack_height": 25,
+    "base_maps_stack_height_status": "user_measured",
+    "base_player_mats_and_rulebooks_stack_height": 4,
+    "base_player_mats_and_rulebooks_stack_height_status": "user_measured",
+    "base_maps_mats_rules_stack_height": 29,
+    "base_maps_mats_rules_stack_height_status": "sum_of_user_measurements",
+    "estimated_map_height": 12.5,
+    "estimated_four_maps_stack_height": 50,
+    "map_estimate_assumption": "Each expansion map has the same folded thickness as the average base map; not measured.",
+    "expansion_player_mat_and_rulebook_stack_heights": [
+      null,
+      null
+    ],
+    "maximum_stack_height_formula": "25 + 12.5 + 12.5 + 4 + expansion_1_mat_rules + expansion_2_mat_rules = 54 + expansion_1_mat_rules + expansion_2_mat_rules",
+    "common_mats_note": "User confirmed the measured base 4 mm includes both the Legends mat and Championship mat. Do not add their thickness again.",
+    "base_legends_and_championship_mats_included": true
+  },
+  "boards_mats_rules_stack_height": null,
+  "boards_mats_rules_stack_height_scope": "All 4 folded double-sided maps, all base/expansion player mats, base Legends and Championship mats, and all base/expansion rulebooks. The base common mats are already included in the measured 4 mm. Exact maximum stack height is not measured.",
+  "provisional_layout": {
+    "status": "planning_only_not_fit_verified",
+    "reserved_flat_stack_height": 60,
+    "lid_headroom": 2,
+    "maximum_organizer_outer_height": 38,
+    "height_formula": "100 - 60 - 2 = 38; includes all tray bases, lids, spacers and stacked tray layers.",
+    "proposed_organizer_footprint": {
+      "length": 288,
+      "width": 288
+    },
+    "side_clearance_per_side": 1,
+    "fit_condition": "Complete flat stack must be <= 60 mm. User's box X/Y must accommodate footprint with clearance. Recompute if either fails.",
+    "scorepads_note": "Measured whole scoreboard bundle100x60x7mm stored in dedicated lower tray; capacity10mm. Removed from upper flat-stack allocation.",
+    "remaining_allowance_for_expansion_mats_and_rules": 6,
+    "card_compartment": {
+      "status": "planning_only_not_fit_verified",
+      "orientation": "flat",
+      "internal_width": 60,
+      "internal_length": 91,
+      "edge_clearance_per_side": 1,
+      "measured_sample_card_count": 24,
+      "stack_removal_clearance": 1,
+      "minimum_internal_depth_for_24_cards": 10,
+      "note": "Internal dimensions, not tray exterior. Add walls, base and lid separately within the provisional organizer envelope. Final clearance and deck capacity require fit verification."
+    }
+  },
+  "notes": "Base game plus up to 2 expansions. Exact expansion names not confirmed. null means not measured or confirmed. 25 mm is base maps only; 4 mm includes all base player mats, Legends mat, Championship mat and rulebooks. Do not add the two common mats again. 50 mm and the 60/38 mm layout are provisional, not measurements. Demo is not final design.",
+  "sleeved_card_provenance": "User provided sleeve outer size 58 x 89 mm.",
+  "sleeved_card_stack_measurement": {
+    "card_count": 24,
+    "approximate_stack_height": 9,
+    "compressed_stack_height": 8.8,
+    "design_basis_stack_height": 9,
+    "estimated_height_per_card": 0.375,
+    "status": "user_measured_approximately",
+    "scope_note": "The measured 24-card pack matches confirmed stored player set basic12+starting3+stress3+heat6.",
+    "compression_note": "8.8 mm was measured under force. Use approximately 9 mm plus removal clearance for compartment sizing.",
+    "estimate_formula": "For preliminary planning only: card_count * 9 / 24 mm. Re-measure actual larger decks before final design."
+  },
+  "race_car": {
+    "width": 11,
+    "length": 23,
+    "height": 7,
+    "status": "user_measured",
+    "axis_interpretation": "width x length x height from three user values"
+  },
+  "gear_pawn": {
+    "base_diameter": 15,
+    "height": 25,
+    "status": "user_measured",
+    "storage_orientation": "horizontal",
+    "upper_profile_assumption": "Entire gear within 15mm cylinder; only base diameter measured."
+  },
+  "weather_tokens_bundle": {
+    "count": 6,
+    "width": 79,
+    "length": 60,
+    "height": 12,
+    "status": "user_measured",
+    "scope": "complete six-token bundle bounding dimensions",
+    "axis_interpretation": "first two values are footprint, third is stored stack height",
+    "measured_date": "2026-10-12"
+  },
+  "road_condition_tokens_bundle": {
+    "count": 12,
+    "width": 28,
+    "length": 28,
+    "height": 24,
+    "status": "user_measured",
+    "scope": "complete twelve-token bundle bounding dimensions",
+    "axis_interpretation": "first two values are footprint, third is stored stack height",
+    "measured_date": "2026-10-12"
+  },
+  "token_fit_candidate": {
+    "status": "separate_candidate_for_50mm_review",
+    "footprint": [85, 66],
+    "weather_module_height": 16,
+    "road_module_height": 28,
+    "total_height": 44,
+    "floor": 1.2,
+    "wall": 2,
+    "lid": 1.2,
+    "lid_lip_depth": 0.6,
+    "removal_headroom": 1,
+    "footprint_edge_clearance": 1,
+    "note": "Placed behind the v0.5 compact car/scoreboard tray. Original WeatherLower compartments cannot fit these measured bundles."
+  },
+  "scoreboard": {
+    "width": 100,
+    "length": 60,
+    "measured_total_stack_height": 7,
+    "design_maximum_stack_height": 10,
+    "scope": "entire stored bundle",
+    "status": "user_measured; design capacity10mm explicitly requested"
+  }
+}

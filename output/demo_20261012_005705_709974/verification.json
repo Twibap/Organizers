@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "geometry": {
+    "valid": true,
+    "solids": 1,
+    "volume_mm3": 54303.999999999956,
+    "outer_size_mm": [
+      120.0,
+      90.0,
+      30.0
+    ]
+  },
+  "stl": {
+    "facets": 60,
+    "closed": true
+  },
+  "step": {
+    "valid": true,
+    "solids": 1
+  },
+  "fcstd": {
+    "reopened": true,
+    "parameter_edit_recomputed": true
+  },
+  "output_directory": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\demo_20261012_005705_709974"
+}

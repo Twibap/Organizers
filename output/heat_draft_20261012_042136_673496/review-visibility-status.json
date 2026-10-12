@@ -1,0 +1,24 @@
+{
+  "saved": true,
+  "review_file": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_042136_673496\\HeatOrganizerReview.FCStd",
+  "visible_parts": [
+    "P01Body",
+    "P02Body",
+    "P03Body",
+    "P04Body",
+    "P05Body",
+    "P06Body",
+    "P07Body",
+    "P08Body",
+    "ReserveBody",
+    "SponsorBody",
+    "OtherBody",
+    "GarageBody",
+    "WeatherLower",
+    "PressUpper",
+    "CarGearBody",
+    "CarGearDrawer"
+  ],
+  "valid_solids": 30,
+  "native_render_saved": true
+}

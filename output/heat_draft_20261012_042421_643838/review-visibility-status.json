@@ -1,0 +1,33 @@
+{
+  "saved": true,
+  "review_file": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_042421_643838\\HeatOrganizerReview.FCStd",
+  "visible_parts": [
+    "P01Body",
+    "P02Body",
+    "P03Body",
+    "P04Body",
+    "P05Body",
+    "P06Body",
+    "P07Body",
+    "P08Body",
+    "ReserveBody",
+    "SponsorBody",
+    "OtherBody",
+    "GarageBody",
+    "WeatherLower",
+    "PressUpper",
+    "CarGearBody",
+    "CarGearDrawer"
+  ],
+  "valid_solids": 30,
+  "native_render_saved": true,
+  "visible_component_envelopes": 16,
+  "detail_saved": true,
+  "detail_file": "C:\\Users\\Twibap\\Workspace\\Organizers\\output\\heat_draft_20261012_042421_643838\\CarGearTray-C.FCStd",
+  "detail_valid_parts": 3,
+  "drawer_display_offset_mm": [
+    0,
+    -32,
+    0
+  ]
+}
